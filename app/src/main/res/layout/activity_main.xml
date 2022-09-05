@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/drawer_layout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".MainActivity"
+	>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		>
+		<!--	MAIN CONTENT SCROLLABLE	-->
+		<!--	_________________________________________________________________	-->
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@color/flutterTheme1"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			>
+
+
+			<!--VERTICAL LINEARLAYOUT-->
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				>
+
+
+				<!--	MENU LOGO	-->
+				<!--	_________________________________________________________________	-->
+				<LinearLayout
+					android:id="@+id/main_menuLogo"
+					android:layout_width="match_parent"
+					android:layout_height="120dp"
+					android:background="@color/flutterTheme2"
+					android:gravity="center"
+					android:orientation="horizontal"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					>
+
+					<TextView
+						android:layout_width="280dp"
+						android:layout_height="wrap_content"
+						android:fontFamily="cursive"
+						android:gravity="center"
+						android:text="@string/logo_title"
+						android:textAlignment="center"
+						android:textSize="60sp"
+						/>
+
+					<ImageView
+						android:id="@+id/imageView"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						app:srcCompat="@drawable/icons_logo4"
+						/>
+				</LinearLayout>
+
+
+				<!--HORIZONTAL LINEARLAYOUT #1 -->
+				<!--_____________________________________________________________________________________________________________________________-->
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="15dp"
+					android:gravity="center"
+					android:orientation="horizontal"
+					>
+
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:orientation="vertical"
+						>
+
+						<androidx.cardview.widget.CardView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							app:cardCornerRadius="15dp"
+							app:cardBackgroundColor="@color/white">
+							<ImageButton
+								android:id="@+id/main_btn_favoris"
+								android:layout_width="150dp"
+								android:layout_height="150dp"
+								android:background="@drawable/roundcorner"
+								android:contentDescription="@string/todo"
+								android:scaleType="fitXY"
+								app:layout_constraintEnd_toStartOf="@+id/main_btn_biceps"
+								app:layout_constraintStart_toStartOf="parent"
+								app:srcCompat="@drawable/menu_abdominaux"
+								tools:layout_editor_absoluteY="107dp"
+								/>
+						</androidx.cardview.widget.CardView>
+
+						<TextView
+							android:id="@+id/main_label_favoris"
+							android:layout_width="150dp"
+							android:layout_height="0dp"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="@string/main_label_favoris"
+							android:textColor="#1A237E"
+							/>
+					</LinearLayout>
+
+
+					<Space
+						android:layout_width="50dp"
+						android:layout_height="50dp"
+						/>
+
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:orientation="vertical"
+						>
+
+						<androidx.cardview.widget.CardView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							app:cardCornerRadius="15dp"
+							app:cardBackgroundColor="@color/white">
+
+							<ImageButton
+								android:id="@+id/main_btn_abdominaux"
+								android:layout_width="150dp"
+								android:layout_height="150dp"
+								android:background="@drawable/roundcorner"
+								android:contentDescription="@string/todo"
+								android:scaleType="centerCrop"
+								app:layout_constraintEnd_toStartOf="@+id/main_btn_biceps"
+								app:layout_constraintStart_toStartOf="parent"
+								app:srcCompat="@drawable/menu_abdominaux"
+								tools:layout_editor_absoluteY="107dp"
+								/>
+						</androidx.cardview.widget.CardView>
+						<TextView
+							android:id="@+id/main_label_abdominaux"
+							android:layout_width="150dp"
+							android:layout_height="0dp"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="@string/main_label_adominaux"
+							android:textColor="#1A237E"
+							/>
+					</LinearLayout>
+
+
+				</LinearLayout>
+
+
+				<!--HORIZONTAL LINEARLAYOUT #2 -->
+				<!--_____________________________________________________________________________________________________________________________-->
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="15dp"
+					android:gravity="center"
+					android:orientation="horizontal"
+					>
+
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:orientation="vertical"
+						>
+
+						<ImageButton
+							android:id="@+id/main_btn_biceps"
+							android:layout_width="150dp"
+							android:layout_height="150dp"
+							android:background="@drawable/roundcorner"
+							android:contentDescription="@string/todo"
+							android:scaleType="centerCrop"
+							app:layout_constraintEnd_toEndOf="parent"
+							app:srcCompat="@drawable/menu_biceps"
+							tools:layout_editor_absoluteY="99dp"
+							/>
+
+						<TextView
+							android:id="@+id/main_label_biceps"
+							android:layout_width="150dp"
+							android:layout_height="0dp"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="@string/main_label_biceps"
+							android:textColor="#1A237E"
+							/>
+					</LinearLayout>
+
+
+					<Space
+						android:layout_width="50dp"
+						android:layout_height="50dp"
+						/>
+
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:orientation="vertical"
+						>
+
+						<ImageButton
+							android:id="@+id/main_btn_fessiers"
+							android:layout_width="150dp"
+							android:layout_height="150dp"
+							android:background="@drawable/roundcorner"
+							android:contentDescription="@string/todo"
+							android:scaleType="centerCrop"
+							app:layout_constraintEnd_toStartOf="@+id/main_btn_dos"
+							app:layout_constraintStart_toStartOf="parent"
+							app:srcCompat="@drawable/menu_cuissesetfessiers"
+							tools:layout_editor_absoluteY="313dp"
+							/>
+
+
+						<TextView
+							android:id="@+id/main_label_fessiers"
+							android:layout_width="150dp"
+							android:layout_height="0dp"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="@string/main_label_fessiers"
+							android:textColor="#1A237E"
+							/>
+					</LinearLayout>
+
+
+				</LinearLayout>
+
+				<!--HORIZONTAL LINEARLAYOUT #3  -->
+				<!--_____________________________________________________________________________________________________________________________-->
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="15dp"
+					android:gravity="center"
+					android:orientation="horizontal"
+					>
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:orientation="vertical"
+						>
+
+						<ImageButton
+							android:id="@+id/main_btn_dos"
+							android:layout_width="150dp"
+							android:layout_height="150dp"
+							android:background="@drawable/roundcorner"
+							android:contentDescription="@string/todo"
+							android:scaleType="centerCrop"
+							app:layout_constraintEnd_toEndOf="parent"
+							app:srcCompat="@drawable/menu_dos"
+							tools:ignore="ImageContrastCheck"
+							tools:layout_editor_absoluteY="313dp"
+							/>
+
+
+						<TextView
+							android:id="@+id/main_label_dos"
+							android:layout_width="150dp"
+							android:layout_height="0dp"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="@string/main_label_dos"
+							android:textColor="#1A237E"
+							/>
+					</LinearLayout>
+
+					<Space
+						android:layout_width="50dp"
+						android:layout_height="50dp"
+						/>
+
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:orientation="vertical"
+						>
+
+						<ImageButton
+							android:id="@+id/main_btn_epaules"
+							android:layout_width="150dp"
+							android:layout_height="150dp"
+							android:layout_marginStart="4dp"
+							android:adjustViewBounds="true"
+							android:background="@drawable/roundcorner"
+							android:contentDescription="@string/todo"
+							android:scaleType="centerCrop"
+							app:layout_constraintEnd_toStartOf="@+id/main_btn_mollets"
+							app:layout_constraintStart_toStartOf="parent"
+							app:srcCompat="@drawable/menu__epaules"
+							tools:layout_editor_absoluteY="448dp"
+							/>
+
+
+						<TextView
+							android:id="@+id/main_label_epaules"
+							android:layout_width="150dp"
+							android:layout_height="0dp"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="@string/main_label_epaules"
+							android:textColor="#1A237E"
+							/>
+					</LinearLayout>
+
+
+				</LinearLayout>
+
+				<!--HORIZONTAL LINEARLAYOUT #4  -->
+				<!--_____________________________________________________________________________________________________________________________-->
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="15dp"
+					android:gravity="center"
+					android:orientation="horizontal"
+					>
+
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:orientation="vertical"
+						>
+
+						<ImageButton
+							android:id="@+id/main_btn_mollets"
+							android:layout_width="150dp"
+							android:layout_height="150dp"
+							android:background="@drawable/roundcorner"
+							android:contentDescription="@string/todo"
+							android:scaleType="centerCrop"
+							app:layout_constraintEnd_toEndOf="parent"
+							app:srcCompat="@drawable/menu_mollets"
+							tools:layout_editor_absoluteY="458dp"
+							/>
+
+
+						<TextView
+							android:id="@+id/main_label_mollets"
+							android:layout_width="150dp"
+							android:layout_height="0dp"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="@string/main_label_mollets"
+							android:textColor="#1A237E"
+							/>
+					</LinearLayout>
+
+
+					<Space
+						android:layout_width="50dp"
+						android:layout_height="50dp"
+						/>
+
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:orientation="vertical"
+						>
+
+						<ImageButton
+							android:id="@+id/main_btn_pectoraux"
+							android:layout_width="150dp"
+							android:layout_height="150dp"
+							android:background="@drawable/roundcorner"
+							android:contentDescription="@string/todo"
+							android:scaleType="centerCrop"
+							app:layout_constraintEnd_toStartOf="@+id/main_btn_triceps"
+							app:layout_constraintStart_toStartOf="parent"
+							app:srcCompat="@drawable/menu_pectoraux"
+							tools:layout_editor_absoluteY="606dp"
+							/>
+
+
+						<TextView
+							android:id="@+id/main_label_pectoraux"
+							android:layout_width="150dp"
+							android:layout_height="0dp"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="@string/main_label_pectoraux"
+							/>
+					</LinearLayout>
+
+
+				</LinearLayout>
+
+
+				<!--HORIZONTAL LINEARLAYOUT #5  -->
+				<!--_____________________________________________________________________________________________________________________________-->
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="15dp"
+					android:gravity="center"
+					android:orientation="horizontal"
+					>
+
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:orientation="vertical"
+						>
+
+						<ImageButton
+							android:id="@+id/main_btn_triceps"
+							android:layout_width="150dp"
+							android:layout_height="150dp"
+							android:background="@drawable/roundcorner"
+							android:contentDescription="@string/todo"
+							android:scaleType="centerCrop"
+							app:srcCompat="@drawable/menu_triceps"
+							tools:ignore="ImageContrastCheck"
+							tools:layout_editor_absoluteX="270dp"
+							tools:layout_editor_absoluteY="597dp"
+							/>
+
+						<TextView
+							android:id="@+id/main_label_triceps"
+							android:layout_width="150dp"
+							android:layout_height="0dp"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="@string/main_label_triceps"
+							/>
+					</LinearLayout>
+
+
+					<Space
+						android:layout_width="50dp"
+						android:layout_height="50dp"
+						/>
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:orientation="vertical"
+						>
+
+						<ImageButton
+							android:id="@+id/main_btn_avantbras"
+							android:layout_width="150dp"
+							android:layout_height="150dp"
+							android:background="@drawable/roundcorner"
+							android:contentDescription="@string/todo"
+							android:scaleType="centerCrop"
+							app:srcCompat="@drawable/menu_avant_bras"
+							tools:layout_editor_absoluteX="270dp"
+							tools:layout_editor_absoluteY="597dp"
+							/>
+
+
+						<TextView
+							android:id="@+id/main_label_avantbras"
+							android:layout_width="150dp"
+							android:layout_height="0dp"
+							android:layout_weight="1"
+							android:gravity="center"
+							android:text="@string/main_label_avantbras"
+							/>
+					</LinearLayout>
+
+
+				</LinearLayout>
+				<!--				END HORIZONTAL-->
+			</LinearLayout>
+			<!--			END VERTICAL-->
+		</ScrollView>
+		<!--		END SCROLLVIEW-->
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+	<!--   MENU DRAWER NAVIGATION  -->
+	<!--___________________________-->
+
+	<com.google.android.material.navigation.NavigationView
+		android:id="@+id/navigationView"
+		android:layout_width="180dp"
+		android:layout_height="match_parent"
+		android:layout_gravity="start"
+		android:background="@color/theme_2"
+		android:fitsSystemWindows="true"
+		app:headerLayout="@layout/header_menu"
+		app:menu="@menu/main_menu"
+		/>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

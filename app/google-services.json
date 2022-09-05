@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "279392458904",
+    "project_id": "musculation-a9934",
+    "storage_bucket": "musculation-a9934.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279392458904:android:5ba265c25b3953e63098ed",
+        "android_client_info": {
+          "package_name": "com.example.Labo2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279392458904-4c4cntbnfgaog1i978mcgskm4hkibq55.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6oWsNqd3_mxqISf091xEOxbP10ZlUhCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279392458904-4c4cntbnfgaog1i978mcgskm4hkibq55.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

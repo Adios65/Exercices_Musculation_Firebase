@@ -1,0 +1,136 @@
+<resources>
+    <!--	AppName-->
+    <string name="app_name">Labo2</string>
+
+    <!--	Accessibility for MenuBar -->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <!--	MenuItems Titles -->
+    <string name="questionA">questionA</string>
+    <string name="questionB">questionB</string>
+    <string name="questionC">questionC</string>
+    <string name="questionD">questionD</string>
+    <string name="questionE">questionE</string>
+
+    <!--	MainActivity Strings -->
+    <string name="todo">ContentDescriptionTODO</string>
+    <string name="menu_title">TITLE</string>
+    <string name="main_label_adominaux">Abdominaux</string>
+    <string name="main_label_biceps">Biceps</string>
+    <string name="main_label_fessiers">Cuisses et Fessiers</string>
+    <string name="main_label_dos">Dos</string>
+    <string name="main_label_epaules">Épaules</string>
+    <string name="main_label_mollets">Mollets</string>
+    <string name="main_label_pectoraux">Pectoraux</string>
+    <string name="main_label_triceps">Triceps</string>
+    <string name="main_label_avantbras">Avant-Bras</string>
+    <string name="logo_title">Gorilla Gym</string>
+
+
+    <!--	Form Strings	-->
+    <string name="empty_value" />
+    <string name="form_enregistrer">Ajouter un Exercice</string>
+    <string name="form_title">Nom</string>
+    <string name="form_description">Description</string>
+    <string name="form_categorie">Categorie</string>
+    <string name="form_hint_empty" />
+    <string name="form_sets">Sets</string>
+    <string name="form_repeat">Repeat</string>
+    <string name="form_pause">Pause</string>
+    <string name="form_duree">Durée</string>
+    <string name="form_image">Image</string>
+    <string name="main_label_favoris">Favoris</string>
+
+    <!--	Spinner Data -->
+    <string-array name="spinnerImage">
+        <item>abdominaux_crunch_a_la_cordee</item>
+        <item>abdominaux_crunch_au_sol</item>
+        <item>abdominaux_flexions_du_buste_a_la_machine</item>
+        <item>abdominaux_releves_de_bassin</item>
+        <item>avant_bras_curl_zottman</item>
+        <item>avant_bras_extensions_des__poignets_la_barre</item>
+        <item>avant_bras_extensions_des_poignets_aux_halteres</item>
+        <item>avant_bras_flexions_des_poignets_avec_halteres</item>
+        <item>biceps_intro_curl_araignee</item>
+        <item>biceps_intro_curl_barre</item>
+        <item>biceps_intro_curl_concentration</item>
+        <item>biceps_intro_curl_gironda</item>
+        <item>dos_intro_conseils_musculation</item>
+        <item>dos_intro_muscle_up</item>
+        <item>dos_intro_power_clean</item>
+        <item>dos_intro_tirage_devant</item>
+        <item>epaules_developpe_avec_halteres</item>
+        <item>epaules_developpe_devant</item>
+        <item>epaules_developpe_nuque</item>
+        <item>epaules_elevations_laterales</item>
+        <item>fessiers_abducteurs_assis_a_la_machine1</item>
+        <item>fessiers_adducteurs_assis_a_la_machine2</item>
+        <item>fessiers_fentes_avec_halt_res</item>
+        <item>fessiers_front_squat_barre</item>
+        <item>mollet_intro_donkey</item>
+        <item>mollet_intro_mollets</item>
+        <item>mollet_intro_mollets_assis</item>
+        <item>mollet_intro_mollets_presse</item>
+        <item>pectoraux_developpe_assis_a_la_machine</item>
+        <item>pectoraux_developpe_couche_a_la_smith_machine</item>
+        <item>pectoraux_developpe_couche_aux_halteres</item>
+        <item>pectoraux_developpe_couche_barre</item>
+        <item>triceps_barre_front</item>
+        <item>triceps_developpe_couche_prise_serree</item>
+        <item>triceps_extensions_a_la_poulie_haute</item>
+        <item>triceps_extensions_au_dessus_de_la_tete</item>
+    </string-array>
+
+    <string-array name="spinnerCategorie">
+        <item>Abdominaux</item>
+        <item>Biceps</item>
+        <item>Cuisses-Fessiers</item>
+        <item>Dos</item>
+        <item>Epaules</item>
+        <item>Mollets</item>
+        <item>Pectoraux</item>
+        <item>Triceps</item>
+        <item>Avant Bras</item>
+    </string-array>
+
+    <string-array name="spinnerSets">
+        <item>1 Set</item>
+        <item>2 Set</item>
+        <item>3 Set</item>
+        <item>4 Set</item>
+        <item>5 Set</item>
+    </string-array>
+
+    <string-array name="spinnerPause">
+        <item>1 Minutes</item>
+        <item>2 Minutes</item>
+        <item>3 Minutes</item>
+        <item>4 Minutes</item>
+        <item>5 Minutes</item>
+    </string-array>
+
+    <string-array name="spinnerDuree">
+        <item>1 Minutes</item>
+        <item>2 Minutes</item>
+        <item>3 Minutes</item>
+        <item>4 Minutes</item>
+        <item>5 Minutes</item>
+    </string-array>
+
+    <string-array name="spinnerRepeat">
+        <item>3x</item>
+        <item>5x</item>
+        <item>10x</item>
+        <item>12x</item>
+        <item>15x</item>
+        <item>20x</item>
+    </string-array>
+
+
+    <!--	XXXXX -->
+
+    <!--	XXXXX -->
+
+    <!--	XXXXX -->
+</resources>

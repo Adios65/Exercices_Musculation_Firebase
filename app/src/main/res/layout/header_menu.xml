@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="60dp"
+	android:background="@drawable/drawer_menu_header_background"
+	android:gravity="center"
+	android:orientation="vertical"
+	android:theme="@style/ThemeOverlay.AppCompat.Dark"
+	>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/menu_title"
+		android:textAlignment="center"
+		android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+		android:textColor="@color/red"
+		android:textFontWeight="1200"
+		android:textSize="25sp"
+		android:textStyle="bold"
+		/>
+
+</LinearLayout>
