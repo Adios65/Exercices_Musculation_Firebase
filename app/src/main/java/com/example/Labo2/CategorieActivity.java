@@ -87,7 +87,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
         //TEST****************************************
 
 //        TextView btn_Modifier_item  = findViewById(R.id.textView_menu);
-//        btn_Modifier_item.setOnClickListener(view -> {});
+//        btn_Modifier_item.setOnClickListener(this);
 //        TextView btn_favorite = findViewById(R.id.textView_favorite);
 //        btn_favorite.setOnClickListener(view -> {});
 

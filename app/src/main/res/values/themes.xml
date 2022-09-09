@@ -15,10 +15,9 @@
 	</style>
 
 	<style name="form_theme" parent="Theme.AppCompat.Light.Dialog.Alert">
-		<item name="android:background">@color/red</item>
+		<item name="android:background">@color/dark_purple</item>
 
 		<item name="android:windowFullscreen">true</item>
-
 		<item name="android:windowBackground">@null</item>
 		<item name="android:windowNoTitle">true</item>
 		<item name="android:windowIsFloating">false</item>

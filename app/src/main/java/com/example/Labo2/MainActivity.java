@@ -184,9 +184,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void composerCourriel() {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        intent.putExtra(Intent.EXTRA_EMAIL, "support@gorillagym.com");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "No Subject");
+        intent.setData(Uri.parse("mailto:support@gorillagym.com")); // only email apps should handle this
         startActivity(Intent.createChooser(intent, "Choisissez un client de messagerie :"));
     }
 
