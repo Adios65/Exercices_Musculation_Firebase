@@ -1,8 +1,11 @@
 package com.example.Labo2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -27,10 +30,12 @@ public class DetailActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         exercice = extras.getParcelableArrayList("detailExercice");
 
+        //SETUP ACTION BAR BACKGROUND COLOR
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#363F93"));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(colorDrawable);
 
         //SETUP BACK BUTTON
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
         afficherDetail();
     }
 
@@ -50,6 +55,19 @@ public class DetailActivity extends AppCompatActivity {
         setsTV.setText(exercice.get(0).getSets());
         repeatTV.setText(exercice.get(0).getRepeat());
 
+    }
+
+
+    //**********************\\
+    //  BACK BUTTON ACTION   \\
+    //*******************************************************************************************************************************************
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

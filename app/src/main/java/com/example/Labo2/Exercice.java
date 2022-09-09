@@ -33,7 +33,7 @@ public class Exercice implements Parcelable {
 
     }
 
-    Exercice(Integer _id, String title, String img, String repeat, String categorie, String sets, String duree, String description, String pause, String favorite) {
+    Exercice(String title, String img, String repeat, String categorie, String sets, String duree, String description, String pause, String favorite) {
         this._id = _id;
         this.title = title;
         this.img = img;

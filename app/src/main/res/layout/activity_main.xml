@@ -85,24 +85,25 @@
 						android:orientation="vertical"
 						>
 
-						<androidx.cardview.widget.CardView
+						<com.google.android.material.card.MaterialCardView
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							app:cardCornerRadius="15dp"
-							app:cardBackgroundColor="@color/white">
+							app:strokeColor="@color/orange"
+							app:strokeWidth="3dp"
+							app:cardCornerRadius="15dp">
 							<ImageButton
 								android:id="@+id/main_btn_favoris"
 								android:layout_width="150dp"
 								android:layout_height="150dp"
 								android:background="@drawable/roundcorner"
 								android:contentDescription="@string/todo"
-								android:scaleType="fitXY"
+								android:scaleType="centerCrop"
 								app:layout_constraintEnd_toStartOf="@+id/main_btn_biceps"
 								app:layout_constraintStart_toStartOf="parent"
-								app:srcCompat="@drawable/menu_abdominaux"
+								app:srcCompat="@drawable/icons_favorite6"
 								tools:layout_editor_absoluteY="107dp"
 								/>
-						</androidx.cardview.widget.CardView>
+						</com.google.android.material.card.MaterialCardView>
 
 						<TextView
 							android:id="@+id/main_label_favoris"
@@ -129,11 +130,12 @@
 						android:orientation="vertical"
 						>
 
-						<androidx.cardview.widget.CardView
+						<com.google.android.material.card.MaterialCardView
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							app:cardCornerRadius="15dp"
-							app:cardBackgroundColor="@color/white">
+							app:strokeColor="@color/orange"
+							app:strokeWidth="3dp"
+							app:cardCornerRadius="15dp">
 
 							<ImageButton
 								android:id="@+id/main_btn_abdominaux"
@@ -147,7 +149,7 @@
 								app:srcCompat="@drawable/menu_abdominaux"
 								tools:layout_editor_absoluteY="107dp"
 								/>
-						</androidx.cardview.widget.CardView>
+						</com.google.android.material.card.MaterialCardView>
 						<TextView
 							android:id="@+id/main_label_abdominaux"
 							android:layout_width="150dp"
@@ -180,19 +182,24 @@
 						android:gravity="center"
 						android:orientation="vertical"
 						>
-
-						<ImageButton
-							android:id="@+id/main_btn_biceps"
-							android:layout_width="150dp"
-							android:layout_height="150dp"
-							android:background="@drawable/roundcorner"
-							android:contentDescription="@string/todo"
-							android:scaleType="centerCrop"
-							app:layout_constraintEnd_toEndOf="parent"
-							app:srcCompat="@drawable/menu_biceps"
-							tools:layout_editor_absoluteY="99dp"
-							/>
-
+						<com.google.android.material.card.MaterialCardView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							app:strokeColor="@color/orange"
+							app:strokeWidth="3dp"
+							app:cardCornerRadius="15dp">
+							<ImageButton
+								android:id="@+id/main_btn_biceps"
+								android:layout_width="150dp"
+								android:layout_height="150dp"
+								android:background="@drawable/roundcorner"
+								android:contentDescription="@string/todo"
+								android:scaleType="centerCrop"
+								app:layout_constraintEnd_toEndOf="parent"
+								app:srcCompat="@drawable/menu_biceps"
+								tools:layout_editor_absoluteY="99dp"
+								/>
+						</com.google.android.material.card.MaterialCardView>
 						<TextView
 							android:id="@+id/main_label_biceps"
 							android:layout_width="150dp"
@@ -217,20 +224,25 @@
 						android:gravity="center"
 						android:orientation="vertical"
 						>
-
-						<ImageButton
-							android:id="@+id/main_btn_fessiers"
-							android:layout_width="150dp"
-							android:layout_height="150dp"
-							android:background="@drawable/roundcorner"
-							android:contentDescription="@string/todo"
-							android:scaleType="centerCrop"
-							app:layout_constraintEnd_toStartOf="@+id/main_btn_dos"
-							app:layout_constraintStart_toStartOf="parent"
-							app:srcCompat="@drawable/menu_cuissesetfessiers"
-							tools:layout_editor_absoluteY="313dp"
-							/>
-
+						<com.google.android.material.card.MaterialCardView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							app:strokeColor="@color/orange"
+							app:strokeWidth="3dp"
+							app:cardCornerRadius="15dp">
+							<ImageButton
+								android:id="@+id/main_btn_fessiers"
+								android:layout_width="150dp"
+								android:layout_height="150dp"
+								android:background="@drawable/roundcorner"
+								android:contentDescription="@string/todo"
+								android:scaleType="centerCrop"
+								app:layout_constraintEnd_toStartOf="@+id/main_btn_dos"
+								app:layout_constraintStart_toStartOf="parent"
+								app:srcCompat="@drawable/menu_cuissesetfessiers"
+								tools:layout_editor_absoluteY="313dp"
+								/>
+						</com.google.android.material.card.MaterialCardView>
 
 						<TextView
 							android:id="@+id/main_label_fessiers"
@@ -262,20 +274,25 @@
 						android:gravity="center"
 						android:orientation="vertical"
 						>
-
-						<ImageButton
-							android:id="@+id/main_btn_dos"
-							android:layout_width="150dp"
-							android:layout_height="150dp"
-							android:background="@drawable/roundcorner"
-							android:contentDescription="@string/todo"
-							android:scaleType="centerCrop"
-							app:layout_constraintEnd_toEndOf="parent"
-							app:srcCompat="@drawable/menu_dos"
-							tools:ignore="ImageContrastCheck"
-							tools:layout_editor_absoluteY="313dp"
-							/>
-
+						<com.google.android.material.card.MaterialCardView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							app:strokeColor="@color/orange"
+							app:strokeWidth="3dp"
+							app:cardCornerRadius="15dp">
+							<ImageButton
+								android:id="@+id/main_btn_dos"
+								android:layout_width="150dp"
+								android:layout_height="150dp"
+								android:background="@drawable/roundcorner"
+								android:contentDescription="@string/todo"
+								android:scaleType="centerCrop"
+								app:layout_constraintEnd_toEndOf="parent"
+								app:srcCompat="@drawable/menu_dos"
+								tools:ignore="ImageContrastCheck"
+								tools:layout_editor_absoluteY="313dp"
+								/>
+						</com.google.android.material.card.MaterialCardView>
 
 						<TextView
 							android:id="@+id/main_label_dos"
@@ -300,22 +317,26 @@
 						android:gravity="center"
 						android:orientation="vertical"
 						>
-
-						<ImageButton
-							android:id="@+id/main_btn_epaules"
-							android:layout_width="150dp"
-							android:layout_height="150dp"
-							android:layout_marginStart="4dp"
-							android:adjustViewBounds="true"
-							android:background="@drawable/roundcorner"
-							android:contentDescription="@string/todo"
-							android:scaleType="centerCrop"
-							app:layout_constraintEnd_toStartOf="@+id/main_btn_mollets"
-							app:layout_constraintStart_toStartOf="parent"
-							app:srcCompat="@drawable/menu__epaules"
-							tools:layout_editor_absoluteY="448dp"
-							/>
-
+						<com.google.android.material.card.MaterialCardView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							app:strokeColor="@color/orange"
+							app:strokeWidth="3dp"
+							app:cardCornerRadius="15dp">
+							<ImageButton
+								android:id="@+id/main_btn_epaules"
+								android:layout_width="150dp"
+								android:layout_height="150dp"
+								android:adjustViewBounds="true"
+								android:background="@drawable/roundcorner"
+								android:contentDescription="@string/todo"
+								android:scaleType="centerCrop"
+								app:layout_constraintEnd_toStartOf="@+id/main_btn_mollets"
+								app:layout_constraintStart_toStartOf="parent"
+								app:srcCompat="@drawable/menu__epaules"
+								tools:layout_editor_absoluteY="448dp"
+								/>
+						</com.google.android.material.card.MaterialCardView>
 
 						<TextView
 							android:id="@+id/main_label_epaules"
@@ -348,20 +369,25 @@
 						android:gravity="center"
 						android:orientation="vertical"
 						>
+						<com.google.android.material.card.MaterialCardView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							app:strokeColor="@color/orange"
+							app:strokeWidth="3dp"
+							app:cardCornerRadius="15dp">
+							<ImageButton
+								android:id="@+id/main_btn_mollets"
+								android:layout_width="150dp"
+								android:layout_height="150dp"
+								android:background="@drawable/roundcorner"
+								android:contentDescription="@string/todo"
+								android:scaleType="centerCrop"
+								app:layout_constraintEnd_toEndOf="parent"
+								app:srcCompat="@drawable/menu_mollets"
+								tools:layout_editor_absoluteY="458dp"
+								/>
 
-						<ImageButton
-							android:id="@+id/main_btn_mollets"
-							android:layout_width="150dp"
-							android:layout_height="150dp"
-							android:background="@drawable/roundcorner"
-							android:contentDescription="@string/todo"
-							android:scaleType="centerCrop"
-							app:layout_constraintEnd_toEndOf="parent"
-							app:srcCompat="@drawable/menu_mollets"
-							tools:layout_editor_absoluteY="458dp"
-							/>
-
-
+						</com.google.android.material.card.MaterialCardView>
 						<TextView
 							android:id="@+id/main_label_mollets"
 							android:layout_width="150dp"
@@ -386,20 +412,25 @@
 						android:gravity="center"
 						android:orientation="vertical"
 						>
-
-						<ImageButton
-							android:id="@+id/main_btn_pectoraux"
-							android:layout_width="150dp"
-							android:layout_height="150dp"
-							android:background="@drawable/roundcorner"
-							android:contentDescription="@string/todo"
-							android:scaleType="centerCrop"
-							app:layout_constraintEnd_toStartOf="@+id/main_btn_triceps"
-							app:layout_constraintStart_toStartOf="parent"
-							app:srcCompat="@drawable/menu_pectoraux"
-							tools:layout_editor_absoluteY="606dp"
-							/>
-
+						<com.google.android.material.card.MaterialCardView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							app:strokeColor="@color/orange"
+							app:strokeWidth="3dp"
+							app:cardCornerRadius="15dp">
+							<ImageButton
+								android:id="@+id/main_btn_pectoraux"
+								android:layout_width="150dp"
+								android:layout_height="150dp"
+								android:background="@drawable/roundcorner"
+								android:contentDescription="@string/todo"
+								android:scaleType="centerCrop"
+								app:layout_constraintEnd_toStartOf="@+id/main_btn_triceps"
+								app:layout_constraintStart_toStartOf="parent"
+								app:srcCompat="@drawable/menu_pectoraux"
+								tools:layout_editor_absoluteY="606dp"
+								/>
+						</com.google.android.material.card.MaterialCardView>
 
 						<TextView
 							android:id="@+id/main_label_pectoraux"
@@ -432,19 +463,25 @@
 						android:gravity="center"
 						android:orientation="vertical"
 						>
-
-						<ImageButton
-							android:id="@+id/main_btn_triceps"
-							android:layout_width="150dp"
-							android:layout_height="150dp"
-							android:background="@drawable/roundcorner"
-							android:contentDescription="@string/todo"
-							android:scaleType="centerCrop"
-							app:srcCompat="@drawable/menu_triceps"
-							tools:ignore="ImageContrastCheck"
-							tools:layout_editor_absoluteX="270dp"
-							tools:layout_editor_absoluteY="597dp"
-							/>
+						<com.google.android.material.card.MaterialCardView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							app:strokeColor="@color/orange"
+							app:strokeWidth="3dp"
+							app:cardCornerRadius="15dp">
+							<ImageButton
+								android:id="@+id/main_btn_triceps"
+								android:layout_width="150dp"
+								android:layout_height="150dp"
+								android:background="@drawable/roundcorner"
+								android:contentDescription="@string/todo"
+								android:scaleType="centerCrop"
+								app:srcCompat="@drawable/menu_triceps"
+								tools:ignore="ImageContrastCheck"
+								tools:layout_editor_absoluteX="270dp"
+								tools:layout_editor_absoluteY="597dp"
+								/>
+						</com.google.android.material.card.MaterialCardView>
 
 						<TextView
 							android:id="@+id/main_label_triceps"
@@ -468,19 +505,24 @@
 						android:gravity="center"
 						android:orientation="vertical"
 						>
-
-						<ImageButton
-							android:id="@+id/main_btn_avantbras"
-							android:layout_width="150dp"
-							android:layout_height="150dp"
-							android:background="@drawable/roundcorner"
-							android:contentDescription="@string/todo"
-							android:scaleType="centerCrop"
-							app:srcCompat="@drawable/menu_avant_bras"
-							tools:layout_editor_absoluteX="270dp"
-							tools:layout_editor_absoluteY="597dp"
-							/>
-
+						<com.google.android.material.card.MaterialCardView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							app:strokeColor="@color/orange"
+							app:strokeWidth="3dp"
+							app:cardCornerRadius="15dp">
+							<ImageButton
+								android:id="@+id/main_btn_avantbras"
+								android:layout_width="150dp"
+								android:layout_height="150dp"
+								android:background="@drawable/roundcorner"
+								android:contentDescription="@string/todo"
+								android:scaleType="centerCrop"
+								app:srcCompat="@drawable/menu_avant_bras"
+								tools:layout_editor_absoluteX="270dp"
+								tools:layout_editor_absoluteY="597dp"
+								/>
+						</com.google.android.material.card.MaterialCardView>
 
 						<TextView
 							android:id="@+id/main_label_avantbras"
@@ -510,7 +552,7 @@
 		android:layout_width="180dp"
 		android:layout_height="match_parent"
 		android:layout_gravity="start"
-		android:background="@color/theme_2"
+		android:background="@color/dark_purple"
 		android:fitsSystemWindows="true"
 		app:headerLayout="@layout/header_menu"
 		app:menu="@menu/main_menu"

@@ -11,12 +11,12 @@
 	<TextView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/menu_title"
+		android:text="@string/contactez_nous"
 		android:textAlignment="center"
 		android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-		android:textColor="@color/red"
+		android:textColor="@color/orange"
 		android:textFontWeight="1200"
-		android:textSize="25sp"
+		android:textSize="18sp"
 		android:textStyle="bold"
 		/>
 

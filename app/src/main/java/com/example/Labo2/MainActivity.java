@@ -10,6 +10,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,6 +48,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setupNavigationToggle();
         //SETUP LA NAVIGATION DRAWER ITEMS OnCLICK LISTENER
         setupItemOnClick();
+        //ACTION BAR BACKGROUND COLOR
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#363F93"));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(colorDrawable);
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Gorilla Gym");
+
 
         maDB = new MyDataBaseHelper(this);
         maDB.getWritableDatabase();
@@ -132,10 +141,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intentToCategorie);
 
 
-        //TEST-----------------------------------------------------------------------------
-        String toastmsg = "ca marche";
-        Toast.makeText(MainActivity.this, toastmsg, Toast.LENGTH_SHORT).show();
-        //TEST-----------------------------------------------------------------------------
+
+        //SETUP ACTION BAR BACKGROUND COLOR
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#363F93"));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(colorDrawable);
     }
 
     //***********************************\\
@@ -150,10 +159,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 case R.id.questionA:
                     //CONTACT EMAIL
+                    composerCourriel();
                     drawerLayout.closeDrawers();
                     break;
                 case R.id.questionB:
                     //CONTACT PHONE
+                    faireUnAppel();
                     drawerLayout.closeDrawers();
                     break;
 //                case R.id.questionC:
@@ -169,6 +180,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         });
     }
+
+
+    public void composerCourriel() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, "support@gorillagym.com");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "No Subject");
+        startActivity(Intent.createChooser(intent, "Choisissez un client de messagerie :"));
+    }
+
+    public void faireUnAppel() {
+        Uri number = Uri.parse("tel:5141234567");
+        Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+        startActivity(callIntent);
+    }
+
 
 
     //*********************\\

@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/layout/activity_categorie.xml" value="0.25" />
-        <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/layout/activity_detail.xml" value="0.29572649572649573" />
+        <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/drawable/contour.xml" value="0.1955" />
+        <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/drawable/drawer_menu_header_background.xml" value="0.112" />
+        <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/drawable/roundcorner.xml" value="0.23" />
+        <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/layout/activity_categorie.xml" value="0.22" />
+        <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/layout/activity_detail.xml" value="0.1" />
         <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/layout/activity_main.xml" value="0.3614583333333333" />
-        <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/layout/exercices_list_layout.xml" value="0.1" />
+        <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/layout/exercices_list_layout.xml" value="0.3373860182370821" />
         <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/layout/form_ajouter_exercice.xml" value="0.35778985507246375" />
+        <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/layout/header_menu.xml" value="0.17553191489361702" />
+        <entry key="..\:/AEC-MOBILES/Android-2/Labo2_Firebase/app/src/main/res/menu/main_menu.xml" value="0.2722222222222222" />
       </map>
     </option>
   </component>

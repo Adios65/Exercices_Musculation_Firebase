@@ -10,6 +10,8 @@ import androidx.core.app.NavUtils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -22,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -55,6 +58,10 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
         //SETUP BACK BUTTON
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+        //ACTION BAR BACKGROUND COLOR
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#363F93"));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(colorDrawable);
+
         //GET DATABASEHELPER TO ACCESS DATABASE
         maDB = new MyDataBaseHelper(this);
 
@@ -79,38 +86,13 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
         btn_form.setOnClickListener(this);
         //TEST****************************************
 
-
+//        TextView btn_Modifier_item  = findViewById(R.id.textView_menu);
+//        btn_Modifier_item.setOnClickListener(view -> {});
+//        TextView btn_favorite = findViewById(R.id.textView_favorite);
+//        btn_favorite.setOnClickListener(view -> {});
 
     }
 
-//    private void loadData(String categorie) {
-//
-//        fireDB.lireParCategorie(categorie).addValueEventListener(new ValueEventListener() {
-//
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(!snapshot.getChildren().iterator().hasNext()){
-//                    fireDB.ajouterDonnees();
-//
-//                };
-//                    listeExercices = new ArrayList<>();
-//                for (DataSnapshot data : snapshot.getChildren()) {
-//                    Exercice exercice = data.getValue(Exercice.class);
-//                    if (!listeExercices. contains(exercice)) {
-//                        listeExercices.add(exercice);
-//                    }
-//                }
-//                listViewExercicesCategorie = findViewById(R.id.liste_Exercices_Categorie);
-//                arrayAdapter = new ExerciceArrayAdapter(context, R.layout.exercices_list_layout, listeExercices);
-//                listViewExercicesCategorie.setAdapter(arrayAdapter);
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        });
-//    }
 
 
     //************************************\\
@@ -152,6 +134,8 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
+
+
             });
         }
         //New Exercice List
@@ -235,7 +219,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
 
                     //Insert into Database_______________________________________________________________________________________________________________________
                     maDB.insertExercice(nomForm, imageForm, repeatForm, categorieForm, setsForm, dureeForm, descriptionForm, pauseForm, favoriteForm);
-                    Exercice exercice = new Exercice(1,nomForm, imageForm, repeatForm, categorieForm, setsForm, dureeForm, descriptionForm, pauseForm, favoriteForm);
+                    Exercice exercice = new Exercice(nomForm, imageForm, repeatForm, categorieForm, setsForm, dureeForm, descriptionForm, pauseForm, favoriteForm);
                     fireDB.ajouter(exercice);
                     //TEST_______________________________________________________________________________________________________________________________________
                     arrayAdapter.notifyDataSetChanged();
@@ -280,10 +264,9 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
     //*******************************************************************************************************************************************
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //TEST-----------------------------------------------------------------------------
-        String toastmsg = "ca marche";
-        Toast.makeText(CategorieActivity.this, toastmsg, Toast.LENGTH_SHORT).show();
-
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+        }
         return super.onOptionsItemSelected(item);
     }
 

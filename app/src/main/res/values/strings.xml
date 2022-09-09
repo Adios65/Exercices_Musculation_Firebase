@@ -41,6 +41,9 @@
     <string name="form_duree">Durée</string>
     <string name="form_image">Image</string>
     <string name="main_label_favoris">Favoris</string>
+    <string name="contactez_nous">Contactez-nous</string>
+    <string name="t_l_phone">Téléphone</string>
+    <string name="courriel">Courriel</string>
 
     <!--	Spinner Data -->
     <string-array name="spinnerImage">

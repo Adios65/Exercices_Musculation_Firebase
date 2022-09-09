@@ -67,9 +67,8 @@ public class ExerciceDataBase {
         int i=0;
         for (String[] databaseRow : databaseData) {
             //Initialisation de la table
-            Exercice exercice = new Exercice(i,databaseRow[0],databaseRow[1],databaseRow[2],databaseRow[3],databaseRow[4],databaseRow[5],databaseRow[6],databaseRow[7],databaseRow[8]);
+            Exercice exercice = new Exercice(databaseRow[0],databaseRow[1],databaseRow[2],databaseRow[3],databaseRow[4],databaseRow[5],databaseRow[6],databaseRow[7],databaseRow[8]);
             ajouter(exercice);
-            i++;
         }
     }
 
@@ -85,12 +84,16 @@ public class ExerciceDataBase {
         return databaseReference.child(key).removeValue();
     }
 
-    public Query lire() {
-        return databaseReference.orderByKey();
+    public Query lireFavoris() {
+        return databaseReference.orderByChild("favorite").equalTo("1");
     }
 
     public Query lireParCategorie(String categorie) {
         return databaseReference.orderByChild("categorie").equalTo(categorie);
+    }
+
+    public Query lireFavorite() {
+        return databaseReference.orderByChild("favorite").equalTo("1");
     }
 
 }
