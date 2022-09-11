@@ -8,6 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class FireBaseHelper {
     private static DatabaseReference databaseReference;
@@ -78,7 +79,7 @@ public class FireBaseHelper {
     }
 
     //MODIFIER UN EXERCICE
-    public Task<Void> modifier(String key, HashMap<String, Object> hashMap) {
+    public Task<Void> modifier(String key, Map<String, Object> hashMap) {
         return databaseReference.child(key).updateChildren(hashMap);
     }
 

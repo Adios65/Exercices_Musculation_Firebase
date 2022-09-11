@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -79,10 +80,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
         findViewById(R.id.btn_form).setOnClickListener(this);
 
 
-
-
     }
-
 
 
     //************************************\\
@@ -96,6 +94,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     listeExercices = new ArrayList<>();
+
                     for (DataSnapshot data : snapshot.getChildren()) {
                         Exercice exercice = data.getValue(Exercice.class);
                         exercice.setKey(data.getKey());
@@ -112,7 +111,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                         //AJOUTER L'EXERCICE SUR LEQUEL ON A CLIQUÉ DANS ARRAYLIST
                         ArrayList<Exercice> exercice = new ArrayList<>();
                         exercice.add((Exercice) adapterView.getItemAtPosition(i));
-
+                        Log.d("TAG", "item");
                         //Send ARRAYLIST avec L'Exercice to DetailActivity
                         Intent intent = new Intent(context, DetailActivity.class);
                         intent.putParcelableArrayListExtra("detailExercice", exercice);
@@ -132,14 +131,21 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(!snapshot.getChildren().iterator().hasNext() ){
+                    if (!snapshot.getChildren().iterator().hasNext()) {
                         fireDB.ajouterDonnees();
                     }
+
                     listeExercices = new ArrayList<>();
+
                     for (DataSnapshot data : snapshot.getChildren()) {
                         Exercice exercice = data.getValue(Exercice.class);
+
+
+                        exercice.setKey(data.getKey());
+
                         listeExercices.add(exercice);
                     }
+
 
                     //Get ListView to show Exercices
                     listViewExercicesCategorie = findViewById(R.id.liste_Exercices_Categorie);
@@ -300,10 +306,10 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
     @Override
     public void onClick(View view) {
 
-            switch(view.getId()) {
-                case R.id.btn_form:
-                    formAjouterExercice();
-                    break;
+        switch (view.getId()) {
+            case R.id.btn_form:
+                formAjouterExercice();
+                break;
 //                case R.id.textView_menu:
 ////                    formAjouterExercice();
 //                    break;
@@ -311,10 +317,8 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
 //
 ////                    fireDB.modifier();
 //                    break;
-            }
+        }
     }
-
-
 
 
 }
