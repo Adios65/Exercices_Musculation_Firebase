@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -97,6 +96,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
 
                     for (DataSnapshot data : snapshot.getChildren()) {
                         Exercice exercice = data.getValue(Exercice.class);
+                        assert exercice != null;
                         exercice.setKey(data.getKey());
                         listeExercices.add(exercice);
                     }
@@ -106,12 +106,12 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                     arrayAdapter = new ListViewArrayAdapter(context, R.layout.exercices_list_layout, listeExercices);
                     listViewExercicesCategorie.setAdapter(arrayAdapter);
 
-
+                    Log.d("TAG", "FAVORI");
                     listViewExercicesCategorie.setOnItemClickListener((adapterView, view, i, l) -> {
                         //AJOUTER L'EXERCICE SUR LEQUEL ON A CLIQUÉ DANS ARRAYLIST
                         ArrayList<Exercice> exercice = new ArrayList<>();
                         exercice.add((Exercice) adapterView.getItemAtPosition(i));
-                        Log.d("TAG", "item");
+                        Log.d("TAG", "FAVORI");
                         //Send ARRAYLIST avec L'Exercice to DetailActivity
                         Intent intent = new Intent(context, DetailActivity.class);
                         intent.putParcelableArrayListExtra("detailExercice", exercice);
@@ -141,6 +141,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                         Exercice exercice = data.getValue(Exercice.class);
 
 
+                        assert exercice != null;
                         exercice.setKey(data.getKey());
 
                         listeExercices.add(exercice);
@@ -153,15 +154,19 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                     listViewExercicesCategorie.setAdapter(arrayAdapter);
 
 
-                    listViewExercicesCategorie.setOnItemClickListener((adapterView, view, i, l) -> {
+                    Log.d("TAG", "CATEGORY");
+
+                    listViewExercicesCategorie.setOnItemClickListener((parent, view, position, id) -> {
                         //AJOUTER L'EXERCICE SUR LEQUEL ON A CLIQUÉ DANS ARRAYLIST
                         ArrayList<Exercice> exercice = new ArrayList<>();
-                        exercice.add((Exercice) adapterView.getItemAtPosition(i));
+                        exercice.add((Exercice) parent.getItemAtPosition(position));
 
+                        Log.d("TAG", "CATEGORY");
                         //Send ARRAYLIST avec L'Exercice to DetailActivity
                         Intent intent = new Intent(context, DetailActivity.class);
                         intent.putParcelableArrayListExtra("detailExercice", exercice);
                         startActivity(intent);
+
                     });
 
                 }
@@ -305,20 +310,10 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
     //*******************************************************************************************************************************************
     @Override
     public void onClick(View view) {
-
-        switch (view.getId()) {
-            case R.id.btn_form:
-                formAjouterExercice();
-                break;
-//                case R.id.textView_menu:
-////                    formAjouterExercice();
-//                    break;
-//                case R.id.textView_favorite:
-//
-////                    fireDB.modifier();
-//                    break;
+        if (view.getId() == R.id.btn_form) {
+            formAjouterExercice();
         }
+
+
     }
-
-
 }

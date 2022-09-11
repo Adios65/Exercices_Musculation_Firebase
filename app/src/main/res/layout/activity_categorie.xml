@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="#8c95e8"
 	>
 
-<!--	BOUTON POUR APPELER LE FORM-->
+
+	<!--	LISTVIEW DES EXERCICES PAR CATEGORIE-->
+
+	<!--	BOUTON POUR APPELER LE FORM-->
+	<ListView
+		android:id="@+id/liste_Exercices_Categorie"
+		android:layout_width="match_parent"
+		android:layout_height="250pt"
+		android:background="@color/light_purple"
+		app:layout_constraintBottom_toTopOf="@+id/btn_form"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		/>
+
 	<Button
 		android:id="@+id/btn_form"
 		android:layout_width="50dp"
 		android:layout_height="50dp"
-		android:text="+"
-		android:textSize="25dp"
-		android:textColor="@color/lighter_purple"
+		android:layout_marginBottom="10dp"
 		android:backgroundTint="@color/dark_purple"
-		android:layout_marginEnd="5dp"
+		android:text="+"
+		android:textColor="@color/lighter_purple"
+		android:textSize="25sp"
+
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.498"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/liste_Exercices_Categorie"
-		app:layout_constraintVertical_bias="0.802">
-	</Button>
+		/>
 
-<!--	LISTVIEW DES EXERCICES PAR CATEGORIE-->
-	<ListView
-		android:id="@+id/liste_Exercices_Categorie"
-		android:layout_width="408dp"
-		android:layout_height="643dp"
-		android:background="@color/light_purple"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
