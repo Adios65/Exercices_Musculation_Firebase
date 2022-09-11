@@ -7,17 +7,15 @@
 	>
 
 
-	<!--	LISTVIEW DES EXERCICES PAR CATEGORIE-->
-
-	<!--	BOUTON POUR APPELER LE FORM-->
 	<ListView
 		android:id="@+id/liste_Exercices_Categorie"
-		android:layout_width="match_parent"
-		android:layout_height="250pt"
-		android:background="@color/light_purple"
+		android:layout_width="wrap_content"
+		android:layout_height="0dp"
+		android:layout_marginBottom="10dp"
+		android:textAlignment="center"
 		app:layout_constraintBottom_toTopOf="@+id/btn_form"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintHorizontal_bias="1.0"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
 		/>
@@ -28,15 +26,12 @@
 		android:layout_height="50dp"
 		android:layout_marginBottom="10dp"
 		android:backgroundTint="@color/dark_purple"
-		android:text="+"
+		android:text="@string/Add_Form"
 		android:textColor="@color/lighter_purple"
 		android:textSize="25sp"
-
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/liste_Exercices_Categorie"
 		/>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

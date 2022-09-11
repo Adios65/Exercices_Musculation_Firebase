@@ -70,15 +70,11 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
             getSupportActionBar().setTitle(categorieChoisie);
         }
 
-
         //LISTER LE ARRAYLIST
         listerExerciceSelonCategorie(categorieChoisie);
 
-
         //SET CLICK EVENT POUR LE BOUTON FORM
-        findViewById(R.id.btn_form).setOnClickListener(this);
-
-
+        //findViewById(R.id.btn_form).setOnClickListener(this);
     }
 
 
@@ -111,7 +107,8 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                         //AJOUTER L'EXERCICE SUR LEQUEL ON A CLIQUÉ DANS ARRAYLIST
                         ArrayList<Exercice> exercice = new ArrayList<>();
                         exercice.add((Exercice) adapterView.getItemAtPosition(i));
-                        Log.d("TAG", "FAVORI");
+
+
                         //Send ARRAYLIST avec L'Exercice to DetailActivity
                         Intent intent = new Intent(context, DetailActivity.class);
                         intent.putParcelableArrayListExtra("detailExercice", exercice);
@@ -161,12 +158,11 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                         ArrayList<Exercice> exercice = new ArrayList<>();
                         exercice.add((Exercice) parent.getItemAtPosition(position));
 
-                        Log.d("TAG", "CATEGORY");
+                        Log.d("TAG", "CATEGORY2");
                         //Send ARRAYLIST avec L'Exercice to DetailActivity
                         Intent intent = new Intent(context, DetailActivity.class);
                         intent.putParcelableArrayListExtra("detailExercice", exercice);
                         startActivity(intent);
-
                     });
 
                 }
@@ -313,7 +309,5 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
         if (view.getId() == R.id.btn_form) {
             formAjouterExercice();
         }
-
-
     }
 }
