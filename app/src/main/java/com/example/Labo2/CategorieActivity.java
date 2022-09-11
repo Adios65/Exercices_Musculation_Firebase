@@ -79,10 +79,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
         findViewById(R.id.btn_form).setOnClickListener(this);
 
 
-
-
     }
-
 
 
     //************************************\\
@@ -132,12 +129,14 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(!snapshot.getChildren().iterator().hasNext() ){
+                    if (!snapshot.getChildren().iterator().hasNext()) {
                         fireDB.ajouterDonnees();
                     }
                     listeExercices = new ArrayList<>();
                     for (DataSnapshot data : snapshot.getChildren()) {
                         Exercice exercice = data.getValue(Exercice.class);
+
+                        exercice.setKey(data.getKey());
                         listeExercices.add(exercice);
                     }
 
@@ -300,10 +299,10 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
     @Override
     public void onClick(View view) {
 
-            switch(view.getId()) {
-                case R.id.btn_form:
-                    formAjouterExercice();
-                    break;
+        switch (view.getId()) {
+            case R.id.btn_form:
+                formAjouterExercice();
+                break;
 //                case R.id.textView_menu:
 ////                    formAjouterExercice();
 //                    break;
@@ -311,10 +310,8 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
 //
 ////                    fireDB.modifier();
 //                    break;
-            }
+        }
     }
-
-
 
 
 }

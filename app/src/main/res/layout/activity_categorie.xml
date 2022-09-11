@@ -7,32 +7,33 @@
 	android:background="#8c95e8"
 	>
 
-<!--	BOUTON POUR APPELER LE FORM-->
+	<!--	BOUTON POUR APPELER LE FORM-->
 	<Button
 		android:id="@+id/btn_form"
 		android:layout_width="50dp"
 		android:layout_height="50dp"
-		android:text="+"
-		android:textSize="25dp"
-		android:textColor="@color/lighter_purple"
-		android:backgroundTint="@color/dark_purple"
 		android:layout_marginEnd="5dp"
+		android:backgroundTint="@color/dark_purple"
+		android:text="+"
+		android:textColor="@color/lighter_purple"
+		android:textSize="25dp"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.498"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/liste_Exercices_Categorie"
-		app:layout_constraintVertical_bias="0.802">
-	</Button>
+		app:layout_constraintVertical_bias="0.802"
+		></Button>
 
-<!--	LISTVIEW DES EXERCICES PAR CATEGORIE-->
+	<!--	LISTVIEW DES EXERCICES PAR CATEGORIE-->
 	<ListView
 		android:id="@+id/liste_Exercices_Categorie"
 		android:layout_width="408dp"
-		android:layout_height="643dp"
+		android:layout_height="0dp"
 		android:background="@color/light_purple"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintTop_toTopOf="parent"
+		/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

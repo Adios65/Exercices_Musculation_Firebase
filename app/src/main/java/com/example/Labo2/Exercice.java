@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import com.google.firebase.database.Exclude;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Exercice implements Parcelable {
 
     @Exclude
@@ -100,11 +103,30 @@ public class Exercice implements Parcelable {
         parcel.writeString(favorite);
     }
 
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("_id", _id);
+        result.put("title", title);
+        result.put("img", img);
+        result.put("repeat", repeat);
+        result.put("categorie", categorie);
+        result.put("sets", sets);
+        result.put("duree", duree);
+        result.put("description", description);
+        result.put("pause", pause);
+        result.put("favorite", favorite);
+        return result;
+    }
+
     //**********\\
     //  GETTERS  \\
     //*****************************************************************************************************************************
 
-    public String getKey() { return key; }
+    public String getKey() {
+        return key;
+    }
 
     public Integer get_id() {
         return _id;
@@ -152,7 +174,9 @@ public class Exercice implements Parcelable {
     //*****************************************************************************************************************************
 
 
-    public void setKey(String key) { this.key = key; }
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public void set_id(Integer _id) {
         this._id = _id;

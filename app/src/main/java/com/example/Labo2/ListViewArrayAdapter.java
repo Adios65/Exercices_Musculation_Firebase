@@ -6,14 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ListViewArrayAdapter extends ArrayAdapter<Exercice> {
 
@@ -33,46 +36,63 @@ public class ListViewArrayAdapter extends ArrayAdapter<Exercice> {
     @Override
     public View getView(int position, @Nullable View convertView, ViewGroup parent) {
 
+//GET THE EXERCICE BEING LISTED
+        Exercice exercice = getItem(position);
 
         //OBTENIR LES VALEURS DES ATTRIBUTS DE L'EXERCICE EN QUESTION
-        String key = (String) getItem(position).getKey();
-        String title = getItem(position).getTitle();
-        String img = getItem(position).getImg();
-        String repeat = getItem(position).getRepeat();
+        String key = (String) exercice.getKey();
+        String title = exercice.getTitle();
+        String img = exercice.getImg();
+        String repeat = exercice.getRepeat();
+
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
-        //OBTENIR LES VUES DE exercices_list_layout
+        //OBTENIR LES ELEMENTS DE exercices_list_layout
         TextView tv_title = convertView.findViewById(R.id.textView_title);
-        ImageView iv_img = convertView.findViewById(R.id.imageView_img);
-        int imgDR = mContext.getResources().getIdentifier(img, "drawable", mContext.getPackageName());
         TextView tv_repeat = convertView.findViewById(R.id.textView_repeat);
+        ImageView iv_img = convertView.findViewById(R.id.imageView_img);
+        TextView btn_modifier = convertView.findViewById(R.id.textView_menu);
+        TextView btn_favorie = convertView.findViewById(R.id.textView_favorite);
 
         //AFFICHER LES VALEURS DANS LE LISTVIEW
         tv_title.setText(title);
-        iv_img.setImageResource(imgDR);
         tv_repeat.setText(repeat);
+        int imgDR = mContext.getResources().getIdentifier(img, "drawable", mContext.getPackageName());
+        iv_img.setImageResource(imgDR);
 
-        TextView btn_Modifier_item  = convertView.findViewById(R.id.textView_menu);
-        btn_Modifier_item.setOnClickListener(view -> {
+        if (exercice.getFavorite().equals("0")) {
 
+            btn_favorie.setBackgroundResource(R.drawable.non_favoris);
+
+        } else if (exercice.getFavorite().equals("1")) {
+
+            btn_favorie.setBackgroundResource(R.drawable.favoris);
+        }
+
+
+        //OnCLICK LISTENER FOR UPDATE
+        btn_modifier.setOnClickListener(view -> {
+            Toast.makeText(mContext, "tetetete", Toast.LENGTH_SHORT).show();
         });
 
 
-        TextView btn_favorite = convertView.findViewById(R.id.textView_favorite);
-        btn_favorite.setOnClickListener(view -> {
-            HashMap<String, Object> itemClicked = new HashMap<>();
-            Exercice exercice = getItem(position);
-            itemClicked.put("_id",getItem(position).get_id());
-            itemClicked.put(key,exercice);
-            System.out.println("____________"+fireDB.modifier(key, itemClicked));
+        //OnCLICK LISTENER FOR UPDATE
+        btn_favorie.setOnClickListener(view -> {
+            //Modifier Favori dans l'exercice
+            if (exercice.getFavorite().equals("0")) {
+                exercice.setFavorite("1");
+                Map<String, Object> hashExercice = exercice.toMap();
+                fireDB.modifier(key, hashExercice);
+            } else {
+                exercice.setFavorite("0");
+                Map<String, Object> hashExercice = exercice.toMap();
+                fireDB.modifier(key, hashExercice);
+            }
+
+
         });
-
-
-        ///****** POUR AJOUTER l'IMAGE DRAWABLE SUR LA LISTVIEW PAR ITEM
-//        int drawableID = context.getResources().getIdentifier(drawableName, "drawable", context.getPackageName());
-//        imageSelector.setImageResource(drawableID);
 
         return convertView;
     }
