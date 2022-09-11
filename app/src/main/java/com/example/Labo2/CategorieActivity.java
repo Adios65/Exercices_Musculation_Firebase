@@ -5,7 +5,6 @@ import static android.widget.AdapterView.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +12,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +22,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -39,15 +36,14 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
     //INTERFACE UI
     ArrayList<Exercice> listeExercices;
     ListView listViewExercicesCategorie;
-    ExerciceArrayAdapter arrayAdapter;
+    ListViewArrayAdapter arrayAdapter;
     Context context = CategorieActivity.this;
 
     //FORM UI
     ImageView imageSelector;
 
     //DATABASEHELPER FOR DATABASE
-    protected MyDataBaseHelper maDB;
-    protected ExerciceDataBase fireDB;
+    protected FireBaseHelper fireDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +59,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(colorDrawable);
 
         //GET DATABASEHELPER TO ACCESS DATABASE
-        maDB = new MyDataBaseHelper(this);
-
-        fireDB = new ExerciceDataBase();
+        fireDB = new FireBaseHelper();
 
 
         //GET CategorieChoisie
@@ -81,10 +75,10 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
         listerExerciceSelonCategorie(categorieChoisie);
 
 
-        //TEST****************************************
+        //SET CLICK EVENT POUR LE BOUTON FORM
         Button btn_form = findViewById(R.id.btn_form);
         btn_form.setOnClickListener(this);
-        //TEST****************************************
+
 
 //        TextView btn_Modifier_item  = findViewById(R.id.textView_menu);
 //        btn_Modifier_item.setOnClickListener(this);
@@ -101,7 +95,41 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
     private void listerExerciceSelonCategorie(String categorieChoisie) {
 
         if (categorieChoisie.equals("Favoris")) {
+            fireDB.lireFavoris().addValueEventListener(new ValueEventListener() {
 
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    listeExercices = new ArrayList<>();
+                    for (DataSnapshot data : snapshot.getChildren()) {
+                        Exercice exercice = data.getValue(Exercice.class);
+                        listeExercices.add(exercice);
+                    }
+
+                    //Get ListView to show Exercices
+                    listViewExercicesCategorie = findViewById(R.id.liste_Exercices_Categorie);
+                    arrayAdapter = new ListViewArrayAdapter(context, R.layout.exercices_list_layout, listeExercices);
+                    listViewExercicesCategorie.setAdapter(arrayAdapter);
+
+
+                    listViewExercicesCategorie.setOnItemClickListener((adapterView, view, i, l) -> {
+                        //AJOUTER L'EXERCICE SUR LEQUEL ON A CLIQUÉ DANS ARRAYLIST
+                        ArrayList<Exercice> exercice = new ArrayList<>();
+                        exercice.add((Exercice) adapterView.getItemAtPosition(i));
+
+                        //Send ARRAYLIST avec L'Exercice to DetailActivity
+                        Intent intent = new Intent(context, DetailActivity.class);
+                        intent.putParcelableArrayListExtra("detailExercice", exercice);
+                        startActivity(intent);
+                    });
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+
+
+            });
         } else if (!categorieChoisie.equals("")) {
             fireDB.lireParCategorie(categorieChoisie).addValueEventListener(new ValueEventListener() {
 
@@ -115,18 +143,22 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                         Exercice exercice = data.getValue(Exercice.class);
                         listeExercices.add(exercice);
                     }
+
+                    //Get ListView to show Exercices
                     listViewExercicesCategorie = findViewById(R.id.liste_Exercices_Categorie);
-                    arrayAdapter = new ExerciceArrayAdapter(context, R.layout.exercices_list_layout, listeExercices);
+                    arrayAdapter = new ListViewArrayAdapter(context, R.layout.exercices_list_layout, listeExercices);
                     listViewExercicesCategorie.setAdapter(arrayAdapter);
 
 
                     listViewExercicesCategorie.setOnItemClickListener((adapterView, view, i, l) -> {
+                        //AJOUTER L'EXERCICE SUR LEQUEL ON A CLIQUÉ DANS ARRAYLIST
                         ArrayList<Exercice> exercice = new ArrayList<>();
                         exercice.add((Exercice) adapterView.getItemAtPosition(i));
+
+                        //Send ARRAYLIST avec L'Exercice to DetailActivity
                         Intent intent = new Intent(context, DetailActivity.class);
                         intent.putParcelableArrayListExtra("detailExercice", exercice);
                         startActivity(intent);
-                        //Send CategorieChoisie to CategorieActivity
                     });
 
                 }
@@ -138,20 +170,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
 
             });
         }
-        //New Exercice List
-//        listeExercices = new ArrayList<>();
 
-        //Get Exercices par Categorie ou Favoris
-//        if (categorieChoisie.equals("Favoris")) {
-//            listeExercices = maDB.obtenirFavoris();
-//        } else {
-//            listeExercices = maDB.obtenirExerciceParCategorie(categorieChoisie);
-//        }
-
-        //Get ListView to show Exercices
-//        listViewExercicesCategorie = findViewById(R.id.liste_Exercices_Categorie);
-//        arrayAdapter = new ExerciceArrayAdapter(this, R.layout.exercices_list_layout, listeExercices);
-//        listViewExercicesCategorie.setAdapter(arrayAdapter);
     }
 
 
@@ -218,7 +237,6 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                     String favoriteForm = "0";
 
                     //Insert into Database_______________________________________________________________________________________________________________________
-                    maDB.insertExercice(nomForm, imageForm, repeatForm, categorieForm, setsForm, dureeForm, descriptionForm, pauseForm, favoriteForm);
                     Exercice exercice = new Exercice(nomForm, imageForm, repeatForm, categorieForm, setsForm, dureeForm, descriptionForm, pauseForm, favoriteForm);
                     fireDB.ajouter(exercice);
                     //TEST_______________________________________________________________________________________________________________________________________

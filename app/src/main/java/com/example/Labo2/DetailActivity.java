@@ -27,6 +27,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        //GET ARRAYLIST AVEC EXERCICE ENVOYÉ PAR LISTVIEW CategoryActivity
         Bundle extras = getIntent().getExtras();
         exercice = extras.getParcelableArrayList("detailExercice");
 
@@ -34,17 +35,17 @@ public class DetailActivity extends AppCompatActivity {
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#363F93"));
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(colorDrawable);
 
+        //SETUP TITLE ACTION BAR
+        getSupportActionBar().setTitle(exercice.get(0).getTitle());
+
         //SETUP BACK BUTTON
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         afficherDetail();
+
     }
 
+    //OBTENIR LES VUES DE activity_detail ET LES REMPLIR AVEC DETAIL DE L'EXERCICE
     private void afficherDetail() {
-
-
-
-        getSupportActionBar().setTitle(exercice.get(0).getTitle());
-
         ImageView imgIV = (ImageView) findViewById(R.id.imageView_detail);
         TextView descriptionTV = (TextView) findViewById(R.id.textView_description);
         TextView setsTV = (TextView) findViewById(R.id.textView_sets);

@@ -1,39 +1,23 @@
 package com.example.Labo2;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Bundle;
 
-import androidx.annotation.Nullable;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
-public class MyDataBaseHelper extends SQLiteOpenHelper {
+public class FireBaseHelper {
+    private static DatabaseReference databaseReference;
 
-    public static final String DB_NAME = "bdexercices";
-
-    public MyDataBaseHelper(@Nullable Context context) {
-        super(context, DB_NAME, null, 4);
+    public FireBaseHelper() {
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        databaseReference = db.getReference("exercices");
     }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE IF NOT EXISTS exercices (" +
-                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "title TEXT," +
-                "img TEXT," +
-                "repeat TEXT," +
-                "categorie TEXT," +
-                "sets TEXT," +
-                "duree TEXT," +
-                "description TEXT," +
-                "pause TEXT," +
-                "favorite TEXT)";
-        db.execSQL(sql);
-
-        //String[] listDonne = [];
+    //POUR AJOUTER LES DONNEES INITIALES
+    public void ajouterDonnees() {
         String[][] databaseData = {
                 {"Curl Zottman", "avant_bras_curl_zottman", "x10", "Avant Bras", "3 Set", "5 Minutes", "La position de départ est la même que pour le curl haltères : debout, dos bien droit, genoux légèrement fléchis, deux haltères courtes dans les mains avec une prise en supination. \n\nEn contractant les biceps et en gardant les coudes près du corps, amener les deux haltères en position haute. Une fois dans cette position, faites tourner votre poignet de 180 degrés jusqu'à ce que vous ayez une prise en pronation. Redescendre ensuite les haltères en conservant cette prise. Quand les haltères approchent des cuisses, tournez de nouveau les poignets pour revenir à la position de départ prise en supination.", "30 Secondes", "0"},
                 {"Extensions des poignets à la barre", "avant_bras_extensions_des__poignets_la_barre", "x10", "Avant Bras", "3 Set", "5 Minutes", "Saisissez-vous d'une barre, mains en pronation, c'est-à-dire pouces orientés l'un vers l'autre, et asseyez-vous sur un banc, les avant-bras sur les cuisses. \n\nSinon, agenouillez-vous devant un banc en posant vos avant-bras dessus. Vos mains doivent pendre dans le vide. Levez les mains pour soulever la charge sans bouger les bras ni décoller les coudes du support. Maintenez la contraction pendant au moins une seconde puis, redescendez les mains doucement.", "30 Secondes", "0"},
@@ -75,156 +59,43 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
                 {"Extensions à la poulie haute", "triceps_extensions_a_la_poulie_haute", "x10", "Triceps", "3 Set", "5 Minutes", "Position de départ debout, les pieds écartés de la largeur du bassin, le dos bien droit et les genoux fléchis. Les deux mains agrippées à une barre reliée à une poulie haute, les bras serrés contre le buste. \n\nTendre les bras jusqu'à l'extension complète puis revenir à la position de départ. Seul l'avant-bras doit bouger pendant l'exécution de l'exercice et les coudes doivent rester collés aux flancs.", "30 Secondes", "0"},
                 {"Extensions au-dessus de la tête", "triceps_extensions_au_dessus_de_la_tete", "x10", "Triceps", "3 Set", "5 Minutes", "Position de départ assis sur un banc, le dos bien droit, un haltère dans la main en position « marteau » et le bras tendu au-dessus de la tête. \n\nDescendre l'haltère derrière la tête en gardant le coude pointé vers le plafond (bras vertical), le plus bas possible et sans heurter le cou votre cou. \n\nRemonter la charge et arrêter l'extension avant de tendre complètement le bras. Seul l'avant-bras doit bouger pendant l'exécution du mouvement, de sorte à se concentrer sur le triceps.", "30 Secondes", "0"},
 
-                {"Crunch à la poulie haute", "abdominaux_crunch_a_la_cordee", "x10", "Abdominaux", "3 Set", "5 Minutes", "Il s'agit de s'agenouiller dos à la poulie haute et de poser les fesses sur les talons. Puis, vous devez saisir chaque bout de la corde dans une main, derrière votre tête. \n\nEnsuite, il faut enrouler le buste vers l'avant pour déplacer la charge en conservant le ventre rentré. \n\nEnfin, revenez à la position de départ en contrôlant la charge.", "30 Secondes", "0"},
+                {"Crunch à la poulie haute", "abdominaux_crunch_a_la_corde", "x10", "Abdominaux", "3 Set", "5 Minutes", "Il s'agit de s'agenouiller dos à la poulie haute et de poser les fesses sur les talons. Puis, vous devez saisir chaque bout de la corde dans une main, derrière votre tête. \n\nEnsuite, il faut enrouler le buste vers l'avant pour déplacer la charge en conservant le ventre rentré. \n\nEnfin, revenez à la position de départ en contrôlant la charge.", "30 Secondes", "0"},
                 {"Crunch au sol", "abdominaux_crunch_au_sol", "x10", "Abdominaux", "3 Set", "5 Minutes", "Position de départ allongé sur le sol ou sur un banc. Les mains peuvent être placées sur la tête au niveau des tempes, sur la poitrine, ou encore le long du corps (plus facile). Evitez de les positionner derrière la nuque. \n\nLes pieds peuvent être posés sur le sol, près des fesses, ou reposer sur un banc. On peut aussi placer les cuisses à la verticale, genoux fléchis et écartés, pieds croisés, de sorte à ne pas cambrer le bas du dos lors du mouvement. Attention, plus les jambes sont surélevées voire tendues, plus la difficulté augmente. Enrouler le buste vers l'avant en contractant les abdominaux. Les épaules ne décollent que de quelques centimètres du sol, et le bas du dos et les hanches restent fixes.", "30 Secondes", "0"},
                 {"Flexions du buste à la machine", "abdominaux_flexions_du_buste_a_la_machine", "x10", "Abdominaux", "3 Set", "5 Minutes", "Commencez par charger la machine, si cela est nécessaire. Puis, réglez le dossier à votre taille et asseyez-vous sur la machine. Collez votre dos au dossier, passez les pieds sous les manchons et saisissez les poignées. \n\nPuis, fléchissez le buste pour descendre les épaules en direction du bas-ventre. Contractez vos abdominaux au maximum puis contrôlez le mouvement pour revenir doucement dans la position de départ.", "30 Secondes", "0"},
                 {"Relevés de bassin", "abdominaux_releves_de_bassin", "x10", "Abdominaux", "3 Set", "5 Minutes", "Deux variantes légèrement différentes sont possibles. On peut le faire sur banc incliné et également au sol. Couché sur le banc, jambes fléchies, décoller les fessiers en enroulant le bas du dos et amener les genoux vers la poitrine. \n\nRevenir lentement à la position de départ.", "30 Secondes", "0"}
         };
-
+        int i=0;
         for (String[] databaseRow : databaseData) {
             //Initialisation de la table
-            ContentValues values = new ContentValues();
-            values.put("title", databaseRow[0]);
-            values.put("img", databaseRow[1]);
-            values.put("repeat", databaseRow[2]);
-            values.put("categorie", databaseRow[3]);
-            values.put("sets", databaseRow[4]);
-            values.put("duree", databaseRow[5]);
-            values.put("description", databaseRow[6]);
-            values.put("pause", databaseRow[7]);
-            values.put("favorite", databaseRow[8]);
-
-            db.insert("exercices", null, values);
+            Exercice exercice = new Exercice(databaseRow[0],databaseRow[1],databaseRow[2],databaseRow[3],databaseRow[4],databaseRow[5],databaseRow[6],databaseRow[7],databaseRow[8]);
+            ajouter(exercice);
         }
-
-
     }
 
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP TABLE IF EXISTS exercices");
-        onCreate(db);
+    //AJOUTER UN EXERCICE POUR FORMULAIRE
+    public Task<Void> ajouter(Exercice exercice) {
+        return databaseReference.push().setValue(exercice);
     }
 
-    //**************\\
-    //  CRUD         \\
-    //*******************************************************************************************************************************************
-
-    public ArrayList<Exercice> obtenirToutLesExercices() {
-
-        ArrayList<Exercice> allEntries = new ArrayList<>();
-
-        try (Cursor cursor = this.getReadableDatabase().rawQuery("SELECT * FROM exercices", null)) {
-
-            while (cursor.moveToNext()) {
-                Exercice exerciceHolder = new Exercice();
-
-                exerciceHolder.set_id(cursor.getInt(cursor.getColumnIndexOrThrow("_id")));
-                exerciceHolder.setTitle(cursor.getString(cursor.getColumnIndexOrThrow("title")));
-                exerciceHolder.setImg(cursor.getString(cursor.getColumnIndexOrThrow("img")));
-                exerciceHolder.setRepeat(cursor.getString(cursor.getColumnIndexOrThrow("repeat")));
-                exerciceHolder.setCategorie(cursor.getString(cursor.getColumnIndexOrThrow("categorie")));
-                exerciceHolder.setSets(cursor.getString(cursor.getColumnIndexOrThrow("sets")));
-                exerciceHolder.setDuree(cursor.getString(cursor.getColumnIndexOrThrow("duree")));
-                exerciceHolder.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("description")));
-                exerciceHolder.setPause(cursor.getString(cursor.getColumnIndexOrThrow("pause")));
-                exerciceHolder.setFavorite(cursor.getString(cursor.getColumnIndexOrThrow("favorite")));
-
-                allEntries.add(exerciceHolder);
-
-            }
-        }
-
-        return allEntries;
+    //MODIFIER UN EXERCICE
+    public Task<Void> modifier(String key, HashMap<String, Object> hashMap) {
+        return databaseReference.child(key).updateChildren(hashMap);
     }
 
-
-    public void insertExercice(String title, String img, String repeat, String categorie, String sets, String duree, String description, String pause, String favorite) {
-
-        //Initialisation de la table
-        ContentValues values = new ContentValues();
-        values.put("title", title);
-        values.put("img", img);
-        values.put("repeat", repeat);
-        values.put("categorie", categorie);
-        values.put("sets", sets);
-        values.put("duree", duree);
-        values.put("description", description);
-        values.put("pause", pause);
-        values.put("favorite", favorite);
-
-        this.getWritableDatabase().insert("exercices", null, values);
+    //SUPPRIMER UN EXERCICE
+    public Task<Void> supprimer(String key) {
+        return databaseReference.child(key).removeValue();
     }
 
-    public ArrayList<Exercice> obtenirExerciceParCategorie(String categorie) {
-
-        ArrayList<Exercice> allEntriesCategorie = new ArrayList<>();
-
-        try (Cursor cursor = this.getReadableDatabase().rawQuery("SELECT * FROM exercices WHERE categorie = ?", new String[]{categorie})) {
-
-            while (cursor.moveToNext()) {
-                Exercice exerciceHolder = new Exercice();
-
-                exerciceHolder.set_id(cursor.getInt(cursor.getColumnIndexOrThrow("_id")));
-                exerciceHolder.setTitle(cursor.getString(cursor.getColumnIndexOrThrow("title")));
-                exerciceHolder.setImg(cursor.getString(cursor.getColumnIndexOrThrow("img")));
-                exerciceHolder.setRepeat(cursor.getString(cursor.getColumnIndexOrThrow("repeat")));
-                exerciceHolder.setCategorie(cursor.getString(cursor.getColumnIndexOrThrow("categorie")));
-                exerciceHolder.setSets(cursor.getString(cursor.getColumnIndexOrThrow("sets")));
-                exerciceHolder.setDuree(cursor.getString(cursor.getColumnIndexOrThrow("duree")));
-                exerciceHolder.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("description")));
-                exerciceHolder.setPause(cursor.getString(cursor.getColumnIndexOrThrow("pause")));
-                exerciceHolder.setFavorite(cursor.getString(cursor.getColumnIndexOrThrow("favorite")));
-
-                allEntriesCategorie.add(exerciceHolder);
-
-            }
-        }
-
-        return allEntriesCategorie;
+    //OBTENIR LA LISTE DES EXERCICES FAVORIS
+    public Query lireFavoris() {
+        return databaseReference.orderByChild("favorite").equalTo("1");
     }
 
-    public ArrayList<Exercice> obtenirFavoris() {
-
-        ArrayList<Exercice> allEntriesFavoris = new ArrayList<>();
-
-        try (Cursor cursor = this.getReadableDatabase().rawQuery("SELECT * FROM exercices WHERE favorite = ?", new String[]{"1"})) {
-
-            while (cursor.moveToNext()) {
-                Exercice exerciceHolder = new Exercice();
-
-                exerciceHolder.set_id(cursor.getInt(cursor.getColumnIndexOrThrow("_id")));
-                exerciceHolder.setTitle(cursor.getString(cursor.getColumnIndexOrThrow("title")));
-                exerciceHolder.setImg(cursor.getString(cursor.getColumnIndexOrThrow("img")));
-                exerciceHolder.setRepeat(cursor.getString(cursor.getColumnIndexOrThrow("repeat")));
-                exerciceHolder.setCategorie(cursor.getString(cursor.getColumnIndexOrThrow("categorie")));
-                exerciceHolder.setSets(cursor.getString(cursor.getColumnIndexOrThrow("sets")));
-                exerciceHolder.setDuree(cursor.getString(cursor.getColumnIndexOrThrow("duree")));
-                exerciceHolder.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("description")));
-                exerciceHolder.setPause(cursor.getString(cursor.getColumnIndexOrThrow("pause")));
-                exerciceHolder.setFavorite(cursor.getString(cursor.getColumnIndexOrThrow("favorite")));
-
-                allEntriesFavoris.add(exerciceHolder);
-
-            }
-        }
-
-        return allEntriesFavoris;
-    }
-
-    public void marquerFavorie(int exerciceID) {
-        this.getWritableDatabase().execSQL("UPDATE exercices SET favorite = '1' WHERE _id = ?", new Integer[]{exerciceID});
-
-    }
-
-    public void effacerExercice(int ID) {
-        this.getWritableDatabase().execSQL("DELETE FROM exercices WHERE _id  = ?", new Integer[]{ID});
+    //OBTENIR LA LISTE DES EXERCICES PAR CATEGORIE
+    public Query lireParCategorie(String categorie) {
+        return databaseReference.orderByChild("categorie").equalTo(categorie);
     }
 
 
 }
-
-
-
-

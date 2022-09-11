@@ -3,7 +3,6 @@ package com.example.Labo2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -14,12 +13,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -37,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //MainActivity Context
     Context context = MainActivity.this;
 
-    protected MyDataBaseHelper maDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +47,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#363F93"));
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(colorDrawable);
 
+        //ACTION BAR TITLE
         Objects.requireNonNull(getSupportActionBar()).setTitle("Gorilla Gym");
 
-
-        maDB = new MyDataBaseHelper(this);
-        maDB.getWritableDatabase();
 
 
         //SETUP BUTTON MAIN MENU
@@ -181,13 +174,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-
+    //INTENT IMPLICIT POUR ENVOYER UN COURRIEL
     public void composerCourriel() {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:support@gorillagym.com")); // only email apps should handle this
         startActivity(Intent.createChooser(intent, "Choisissez un client de messagerie :"));
     }
 
+    //INTENT IMPLICIT POUR PASSER UN APPEL
     public void faireUnAppel() {
         Uri number = Uri.parse("tel:5141234567");
         Intent callIntent = new Intent(Intent.ACTION_DIAL, number);

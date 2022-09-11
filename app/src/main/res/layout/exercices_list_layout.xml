@@ -34,6 +34,7 @@
 							app:cardCornerRadius="250dp"
 							android:layout_gravity="center">
 
+<!--							LOGO EXERCICE-->
 							<ImageView
 								android:id="@+id/imageView_img"
 								android:layout_width="60dp"
@@ -53,6 +54,7 @@
 						android:orientation="vertical"
 						>
 
+<!--						TITRE-->
 						<TextView
 							android:id="@+id/textView_title"
 							android:layout_width="wrap_content"
@@ -63,6 +65,7 @@
 							android:textStyle="bold"
 							/>
 
+<!--						REPEATS-->
 						<TextView
 							android:id="@+id/textView_repeat"
 							android:layout_width="wrap_content"
@@ -82,6 +85,7 @@
 						android:orientation="vertical"
 						>
 
+<!--						MENU POUR MODIFIER OU SUPPRIMER L'EXERCICE-->
 						<TextView
 							android:id="@+id/textView_menu"
 							android:layout_width="25dp"
@@ -92,6 +96,7 @@
 							android:textSize="22sp"
 							android:textStyle="bold"/>
 
+<!--						BOUTON AJOUTER/ENLEVER DE FAVORIS-->
 						<TextView
 							android:id="@+id/textView_favorite"
 							android:layout_width="25dp"

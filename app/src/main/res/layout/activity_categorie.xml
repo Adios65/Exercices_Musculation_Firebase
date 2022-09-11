@@ -7,6 +7,7 @@
 	android:background="#8c95e8"
 	>
 
+<!--	BOUTON POUR APPELER LE FORM-->
 	<Button
 		android:id="@+id/btn_form"
 		android:layout_width="50dp"
@@ -24,6 +25,7 @@
 		app:layout_constraintVertical_bias="0.802">
 	</Button>
 
+<!--	LISTVIEW DES EXERCICES PAR CATEGORIE-->
 	<ListView
 		android:id="@+id/liste_Exercices_Categorie"
 		android:layout_width="408dp"
