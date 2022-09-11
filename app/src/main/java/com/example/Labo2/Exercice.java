@@ -3,8 +3,12 @@ package com.example.Labo2;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.database.Exclude;
+
 public class Exercice implements Parcelable {
 
+    @Exclude
+    private String key;
     private Integer _id;
     private String title;
     private String img;
@@ -100,6 +104,8 @@ public class Exercice implements Parcelable {
     //  GETTERS  \\
     //*****************************************************************************************************************************
 
+    public String getKey() { return key; }
+
     public Integer get_id() {
         return _id;
     }
@@ -145,6 +151,8 @@ public class Exercice implements Parcelable {
     //  SETTERS  \\
     //*****************************************************************************************************************************
 
+
+    public void setKey(String key) { this.key = key; }
 
     public void set_id(Integer _id) {
         this._id = _id;

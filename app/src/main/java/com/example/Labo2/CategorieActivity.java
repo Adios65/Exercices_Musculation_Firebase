@@ -76,14 +76,10 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
 
 
         //SET CLICK EVENT POUR LE BOUTON FORM
-        Button btn_form = findViewById(R.id.btn_form);
-        btn_form.setOnClickListener(this);
+        findViewById(R.id.btn_form).setOnClickListener(this);
 
 
-//        TextView btn_Modifier_item  = findViewById(R.id.textView_menu);
-//        btn_Modifier_item.setOnClickListener(this);
-//        TextView btn_favorite = findViewById(R.id.textView_favorite);
-//        btn_favorite.setOnClickListener(view -> {});
+
 
     }
 
@@ -102,6 +98,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                     listeExercices = new ArrayList<>();
                     for (DataSnapshot data : snapshot.getChildren()) {
                         Exercice exercice = data.getValue(Exercice.class);
+                        exercice.setKey(data.getKey());
                         listeExercices.add(exercice);
                     }
 
@@ -302,7 +299,22 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
     //*******************************************************************************************************************************************
     @Override
     public void onClick(View view) {
-        formAjouterExercice();
+
+            switch(view.getId()) {
+                case R.id.btn_form:
+                    formAjouterExercice();
+                    break;
+//                case R.id.textView_menu:
+////                    formAjouterExercice();
+//                    break;
+//                case R.id.textView_favorite:
+//
+////                    fireDB.modifier();
+//                    break;
+            }
     }
+
+
+
 
 }

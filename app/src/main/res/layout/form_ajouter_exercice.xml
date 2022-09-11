@@ -115,7 +115,9 @@
 								android:inputType="textPersonName"
 
 								android:textSize="15sp"
-								/>
+								>
+								<requestFocus/>
+							</EditText>
 
 						</LinearLayout>
 
