@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -70,14 +71,11 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
             getSupportActionBar().setTitle(categorieChoisie);
         }
 
-
         //LISTER LE ARRAYLIST
         listerExerciceSelonCategorie(categorieChoisie);
 
-
         //SET CLICK EVENT POUR LE BOUTON FORM
         findViewById(R.id.btn_form).setOnClickListener(this);
-
 
     }
 
@@ -93,8 +91,10 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     listeExercices = new ArrayList<>();
+
                     for (DataSnapshot data : snapshot.getChildren()) {
                         Exercice exercice = data.getValue(Exercice.class);
+                        assert exercice != null;
                         exercice.setKey(data.getKey());
                         listeExercices.add(exercice);
                     }
@@ -104,11 +104,11 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                     arrayAdapter = new ListViewArrayAdapter(context, R.layout.exercices_list_layout, listeExercices);
                     listViewExercicesCategorie.setAdapter(arrayAdapter);
 
-
                     listViewExercicesCategorie.setOnItemClickListener((adapterView, view, i, l) -> {
                         //AJOUTER L'EXERCICE SUR LEQUEL ON A CLIQUÉ DANS ARRAYLIST
                         ArrayList<Exercice> exercice = new ArrayList<>();
                         exercice.add((Exercice) adapterView.getItemAtPosition(i));
+
 
                         //Send ARRAYLIST avec L'Exercice to DetailActivity
                         Intent intent = new Intent(context, DetailActivity.class);
@@ -132,13 +132,19 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                     if (!snapshot.getChildren().iterator().hasNext()) {
                         fireDB.ajouterDonnees();
                     }
+
                     listeExercices = new ArrayList<>();
+
                     for (DataSnapshot data : snapshot.getChildren()) {
                         Exercice exercice = data.getValue(Exercice.class);
 
+                        assert exercice != null;
                         exercice.setKey(data.getKey());
+
+
                         listeExercices.add(exercice);
                     }
+
 
                     //Get ListView to show Exercices
                     listViewExercicesCategorie = findViewById(R.id.liste_Exercices_Categorie);
@@ -146,11 +152,12 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                     listViewExercicesCategorie.setAdapter(arrayAdapter);
 
 
-                    listViewExercicesCategorie.setOnItemClickListener((adapterView, view, i, l) -> {
+                    listViewExercicesCategorie.setOnItemClickListener((parent, view, position, id) -> {
                         //AJOUTER L'EXERCICE SUR LEQUEL ON A CLIQUÉ DANS ARRAYLIST
                         ArrayList<Exercice> exercice = new ArrayList<>();
-                        exercice.add((Exercice) adapterView.getItemAtPosition(i));
+                        exercice.add((Exercice) parent.getItemAtPosition(position));
 
+                        Log.d("TAG", "CATEGORY2");
                         //Send ARRAYLIST avec L'Exercice to DetailActivity
                         Intent intent = new Intent(context, DetailActivity.class);
                         intent.putParcelableArrayListExtra("detailExercice", exercice);
@@ -216,6 +223,15 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
         spinnerPause.setAdapter(new SpinnerAdapter(this, R.layout.spinner_content_layout, getResources().getStringArray(R.array.spinnerPause)));
         spinnerRepeat.setAdapter(new SpinnerAdapter(this, R.layout.spinner_content_layout, getResources().getStringArray(R.array.spinnerRepeat)));
         spinnerDuree.setAdapter(new SpinnerAdapter(this, R.layout.spinner_content_layout, getResources().getStringArray(R.array.spinnerDuree)));
+
+
+        //REMOVE BUTTONS
+        Button btn_update = myFormView.findViewById(R.id.btn_modifier);
+        Button btn_delete = myFormView.findViewById(R.id.btn_supprimer);
+        Button btn_cancel = myFormView.findViewById(R.id.btn_annuler);
+        btn_update.setVisibility(View.GONE);
+        btn_delete.setVisibility(View.GONE);
+        btn_cancel.setVisibility(View.GONE);
 
         //FORM ACTION ====CREATE / CANCEL======_______________________________________________________________________________________________________________
         myForm.setView(myFormView)
@@ -299,19 +315,8 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()) {
-            case R.id.btn_form:
-                formAjouterExercice();
-                break;
-//                case R.id.textView_menu:
-////                    formAjouterExercice();
-//                    break;
-//                case R.id.textView_favorite:
-//
-////                    fireDB.modifier();
-//                    break;
+        if (view.getId() == R.id.btn_form) {
+            formAjouterExercice();
         }
     }
-
-
 }
