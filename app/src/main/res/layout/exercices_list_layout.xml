@@ -90,6 +90,7 @@
 				<!--						MENU POUR MODIFIER OU SUPPRIMER L'EXERCICE-->
 				<TextView
 					android:id="@+id/textView_modifier"
+
 					android:layout_width="25dp"
 					android:layout_height="25dp"
 					android:gravity="center"
@@ -102,11 +103,14 @@
 				<!--						BOUTON AJOUTER/ENLEVER DE FAVORIS-->
 				<TextView
 					android:id="@+id/ImageButton_favorite"
+
 					android:layout_width="25dp"
 					android:layout_height="25dp"
 					android:layout_marginTop="5dp"
 					android:gravity="center"
+
 					android:scaleType="fitXY"
+
 					/>
 
 			</LinearLayout>

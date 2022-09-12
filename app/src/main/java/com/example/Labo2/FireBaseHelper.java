@@ -80,8 +80,11 @@ public class FireBaseHelper {
     }
 
     //MODIFIER UN EXERCICE
+
     public void modifier(String key, Map<String, Object> hashMap) {
         databaseReference.child(key).updateChildren(hashMap);
+
+
     }
 
     //SUPPRIMER UN EXERCICE

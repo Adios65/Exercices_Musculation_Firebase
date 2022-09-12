@@ -76,6 +76,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
 
         //SET CLICK EVENT POUR LE BOUTON FORM
         findViewById(R.id.btn_form).setOnClickListener(this);
+
     }
 
 
@@ -136,8 +137,10 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
 
                     for (DataSnapshot data : snapshot.getChildren()) {
                         Exercice exercice = data.getValue(Exercice.class);
+
                         assert exercice != null;
                         exercice.setKey(data.getKey());
+
 
                         listeExercices.add(exercice);
                     }
@@ -311,6 +314,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
     //*******************************************************************************************************************************************
     @Override
     public void onClick(View view) {
+
         if (view.getId() == R.id.btn_form) {
             formAjouterExercice();
         }
