@@ -1,4 +1,4 @@
-package com.example.Labo2;
+package com.example.Labo3_Firebase;
 
 import android.os.Parcel;
 import android.os.Parcelable;

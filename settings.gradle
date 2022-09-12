@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Labo2"
+rootProject.name = "Labo3_Firebase"
 include ':app'

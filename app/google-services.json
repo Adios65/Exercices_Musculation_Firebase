@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "279392458904",
-    "project_id": "musculation-a9934",
-    "storage_bucket": "musculation-a9934.appspot.com"
+    "project_number": "597005048113",
+    "project_id": "labo3-firebase",
+    "storage_bucket": "labo3-firebase.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:279392458904:android:5ba265c25b3953e63098ed",
+        "mobilesdk_app_id": "1:597005048113:android:5d7df0f7f055969b12f810",
         "android_client_info": {
-          "package_name": "com.example.Labo2"
+          "package_name": "com.example.Labo3_Firebase"
         }
       },
       "oauth_client": [
         {
-          "client_id": "279392458904-4c4cntbnfgaog1i978mcgskm4hkibq55.apps.googleusercontent.com",
+          "client_id": "597005048113-k3frjv0p6boj21gptbeu5elc8qrfup9s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB6oWsNqd3_mxqISf091xEOxbP10ZlUhCY"
+          "current_key": "AIzaSyB9yXFsPrwg1uzPSnd6y9F3Lgajy0_6L58"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "279392458904-4c4cntbnfgaog1i978mcgskm4hkibq55.apps.googleusercontent.com",
+              "client_id": "597005048113-k3frjv0p6boj21gptbeu5elc8qrfup9s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
