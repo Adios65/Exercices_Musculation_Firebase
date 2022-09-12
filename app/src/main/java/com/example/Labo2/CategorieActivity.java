@@ -102,7 +102,6 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                     arrayAdapter = new ListViewArrayAdapter(context, R.layout.exercices_list_layout, listeExercices);
                     listViewExercicesCategorie.setAdapter(arrayAdapter);
 
-                    Log.d("TAG", "FAVORI");
                     listViewExercicesCategorie.setOnItemClickListener((adapterView, view, i, l) -> {
                         //AJOUTER L'EXERCICE SUR LEQUEL ON A CLIQUÉ DANS ARRAYLIST
                         ArrayList<Exercice> exercice = new ArrayList<>();
@@ -151,7 +150,6 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                     listViewExercicesCategorie.setAdapter(arrayAdapter);
 
 
-                    Log.d("TAG", "CATEGORY");
 
                     listViewExercicesCategorie.setOnItemClickListener((parent, view, position, id) -> {
                         //AJOUTER L'EXERCICE SUR LEQUEL ON A CLIQUÉ DANS ARRAYLIST

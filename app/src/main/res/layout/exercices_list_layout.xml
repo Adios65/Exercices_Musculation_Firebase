@@ -100,7 +100,7 @@
 					/>
 
 				<!--						BOUTON AJOUTER/ENLEVER DE FAVORIS-->
-				<ImageButton
+				<TextView
 					android:id="@+id/ImageButton_favorite"
 					android:layout_width="25dp"
 					android:layout_height="25dp"
