@@ -60,6 +60,7 @@ public class Exercice implements Parcelable {
 
 
     protected Exercice(Parcel in) {
+        key = in.readString();
         _id = in.readInt();
         title = in.readString();
         img = in.readString();
@@ -91,6 +92,7 @@ public class Exercice implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(key);
         parcel.writeInt(_id);
         parcel.writeString(title);
         parcel.writeString(img);

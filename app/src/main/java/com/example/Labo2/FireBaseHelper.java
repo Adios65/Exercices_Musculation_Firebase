@@ -17,6 +17,7 @@ public class FireBaseHelper {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         databaseReference = db.getReference("exercices");
     }
+
     //POUR AJOUTER LES DONNEES INITIALES
     public void ajouterDonnees() {
         String[][] databaseData = {
@@ -65,27 +66,27 @@ public class FireBaseHelper {
                 {"Flexions du buste à la machine", "abdominaux_flexions_du_buste_a_la_machine", "10x", "Abdominaux", "3 Set", "5 Minutes", "Commencez par charger la machine, si cela est nécessaire. Puis, réglez le dossier à votre taille et asseyez-vous sur la machine. Collez votre dos au dossier, passez les pieds sous les manchons et saisissez les poignées. \n\nPuis, fléchissez le buste pour descendre les épaules en direction du bas-ventre. Contractez vos abdominaux au maximum puis contrôlez le mouvement pour revenir doucement dans la position de départ.", "3 Minutes", "0"},
                 {"Relevés de bassin", "abdominaux_releves_de_bassin", "10x", "Abdominaux", "3 Set", "5 Minutes", "Deux variantes légèrement différentes sont possibles. On peut le faire sur banc incliné et également au sol. Couché sur le banc, jambes fléchies, décoller les fessiers en enroulant le bas du dos et amener les genoux vers la poitrine. \n\nRevenir lentement à la position de départ.", "3 Minutes", "0"}
         };
-        int i=0;
+        int i = 0;
         for (String[] databaseRow : databaseData) {
             //Initialisation de la table
-            Exercice exercice = new Exercice(databaseRow[0],databaseRow[1],databaseRow[2],databaseRow[3],databaseRow[4],databaseRow[5],databaseRow[6],databaseRow[7],databaseRow[8]);
+            Exercice exercice = new Exercice(databaseRow[0], databaseRow[1], databaseRow[2], databaseRow[3], databaseRow[4], databaseRow[5], databaseRow[6], databaseRow[7], databaseRow[8]);
             ajouter(exercice);
         }
     }
 
     //AJOUTER UN EXERCICE POUR FORMULAIRE
-    public Task<Void> ajouter(Exercice exercice) {
-        return databaseReference.push().setValue(exercice);
+    public void ajouter(Exercice exercice) {
+        databaseReference.push().setValue(exercice);
     }
 
     //MODIFIER UN EXERCICE
-    public Task<Void> modifier(String key, Map<String, Object> hashMap) {
-        return databaseReference.child(key).updateChildren(hashMap);
+    public void modifier(String key, Map<String, Object> hashMap) {
+        databaseReference.child(key).updateChildren(hashMap);
     }
 
     //SUPPRIMER UN EXERCICE
-    public Task<Void> supprimer(String key) {
-        return databaseReference.child(key).removeValue();
+    public void supprimer(String key) {
+        databaseReference.child(key).removeValue();
     }
 
     //OBTENIR LA LISTE DES EXERCICES FAVORIS

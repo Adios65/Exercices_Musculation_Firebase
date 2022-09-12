@@ -438,8 +438,53 @@
 					</LinearLayout>
 
 
-
 				</androidx.cardview.widget.CardView>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toBottomOf="@id/card_view"
+					>
+
+					<Button
+						android:id="@+id/btn_annuler"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:backgroundTint="@color/orange"
+						android:text="Annuler"
+						android:textColor="@color/dark_purple"
+						/>
+
+					<Space
+						android:layout_width="5dp"
+						android:layout_height="wrap_content"
+						/>
+
+					<Button
+						android:id="@+id/btn_supprimer"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:backgroundTint="@color/orange"
+						android:text="Supprimer"
+						android:textColor="@color/dark_purple"
+						/>
+
+					<Space
+						android:layout_width="5dp"
+						android:layout_height="wrap_content"
+						/>
+
+					<Button
+						android:id="@+id/btn_modifier"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:backgroundTint="@color/orange"
+						android:text="Modifier"
+						android:textColor="@color/dark_purple"
+						/>
+				</LinearLayout>
 
 
 			</androidx.constraintlayout.widget.ConstraintLayout>

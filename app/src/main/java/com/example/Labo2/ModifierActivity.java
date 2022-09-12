@@ -9,52 +9,82 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Objects;
 
-public class ModifierActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
+public class ModifierActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     ImageView imageSelector;
-
     Context context = ModifierActivity.this;
+    Exercice exercice_a_modifier;
 
+    TextView formTitre;
+    String key;
+
+    //FORM VALUE
+    EditText nomInput;
+    EditText descriptionInput;
+    Spinner spinnerCategorie;
+    Spinner spinnerSets;
+    Spinner spinnerPause;
+    Spinner spinnerRepeat;
+    Spinner spinnerDuree;
+
+
+    FireBaseHelper fireDB = new FireBaseHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_ajouter_exercice);
 
+
+        //SET OnClickLISTENER TO BUTTONS
+        Button btn_update = findViewById(R.id.btn_modifier);
+        Button btn_delete = findViewById(R.id.btn_supprimer);
+        Button btn_cancel = findViewById(R.id.btn_annuler);
+        btn_update.setOnClickListener(this);
+        btn_delete.setOnClickListener(this);
+        btn_cancel.setOnClickListener(this);
+
         //CHANGER TITRE
-        TextView formTitre = findViewById(R.id.form_Titre);
+        formTitre = findViewById(R.id.form_Titre);
         formTitre.setText("Modifer Exercice");
 
-        //GET CategorieChoisie
+        //GET EXERCICE A MODIFIER
         Bundle extras = getIntent().getExtras();
-        Exercice exercice_a_modifier = new Exercice();
 
         if (extras != null) {
             exercice_a_modifier = extras.getParcelable("ModifierCetExercice");
-            getSupportActionBar().hide();
         }
+        //SAUVARDER LA CLE POUR DB OPERATIONS [UPDATE--DELETE]
+        key = exercice_a_modifier.getKey();
+
+
+        //ENLEVER TOP ACTION BAR
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
 
         //CHERHCE ELEMENTS IN VIEW
         //*******************************************************************************************************************************************
-
         //SET UNFOCUS FOR EDITTEXT, THIS WILL ENABLE TO CLICK OUTSIDE THE KEYBOARD TO CLOSE IT_______________________________________________________________
-        EditText nomInput = findViewById(R.id.input_title);
-        EditText descriptionInput = findViewById(R.id.input_description);
+        nomInput = findViewById(R.id.input_title);
+        descriptionInput = findViewById(R.id.input_description);
 
         ArrayList<EditText> editTextList = new ArrayList<>();
         editTextList.add(nomInput);
         editTextList.add(descriptionInput);
 
+        //SETUP EDITTEXT UNFOCUS KEYBOARD FUNCTIONNALITY
         for (int i = 0; i < editTextList.size(); i++) {
             editTextList.get(i).setOnFocusChangeListener((v, hasFocus) -> {
                 if (!hasFocus) {
@@ -71,12 +101,12 @@ public class ModifierActivity extends AppCompatActivity implements AdapterView.O
         Spinner imageSpinner = findViewById(R.id.spinnerImage);
         imageSpinner.setVisibility(View.GONE);
 
-        //Set Spinner Layout and Strings______________________________________________________________________________________________________________________
-        Spinner spinnerCategorie = findViewById(R.id.spinnerCategorie);
-        Spinner spinnerSets = findViewById(R.id.spinnerSets);
-        Spinner spinnerPause = findViewById(R.id.spinnerPause);
-        Spinner spinnerRepeat = findViewById(R.id.spinnerRepeat);
-        Spinner spinnerDuree = findViewById(R.id.spinnerDuree);
+        //Get Spinner Layout and Set Array Strings______________________________________________________________________________________________________________________
+        spinnerCategorie = findViewById(R.id.spinnerCategorie);
+        spinnerSets = findViewById(R.id.spinnerSets);
+        spinnerPause = findViewById(R.id.spinnerPause);
+        spinnerRepeat = findViewById(R.id.spinnerRepeat);
+        spinnerDuree = findViewById(R.id.spinnerDuree);
 
         spinnerCategorie.setAdapter(new SpinnerAdapter(this, R.layout.spinner_content_layout, getResources().getStringArray(R.array.spinnerCategorie)));
         spinnerSets.setAdapter(new SpinnerAdapter(this, R.layout.spinner_content_layout, getResources().getStringArray(R.array.spinnerSets)));
@@ -95,13 +125,8 @@ public class ModifierActivity extends AppCompatActivity implements AdapterView.O
         int drawableID = context.getResources().getIdentifier(exercice_a_modifier.getImg(), "drawable", context.getPackageName());
         imageSelector.setImageResource(drawableID);
 
-        //{"Curl Zottman", "avant_bras_curl_zottman", "x10", "Avant Bras", "3 Set", "5 Minutes", "La position de départ est la même que pour le curl haltères : debout, dos bien droit, genoux légèrement fléchis, deux haltères courtes dans les mains avec une prise en supination. \n\nEn contractant les biceps et en gardant les coudes près du corps, amener les deux haltères en position haute. Une fois dans cette position, faites tourner votre poignet de 180 degrés jusqu'à ce que vous ayez une prise en pronation. Redescendre ensuite les haltères en conservant cette prise. Quand les haltères approchent des cuisses, tournez de nouveau les poignets pour revenir à la position de départ prise en supination.", "30 Secondes", "0"},
-        //
 
-
-//        Log.d("Exercice", "PRE--" + test);
-
-
+        //SET SPINNER BY EXERCICE SELECTION
         spinnerSets.setSelection(setSpinnerPosition(exercice_a_modifier.getSets()));
         spinnerPause.setSelection(setSpinnerPosition(exercice_a_modifier.getPause()));
         spinnerRepeat.setSelection(setSpinnerPosition(exercice_a_modifier.getRepeat()));
@@ -110,6 +135,9 @@ public class ModifierActivity extends AppCompatActivity implements AdapterView.O
     }
 
 
+    //*************************************************\\
+    //  GET EXERCICE SPINNER POSITION TO POPULATE FORM  \\
+    //*******************************************************************************************************************************************
     public int setSpinnerPosition(String ExerciceSpinnerValue) {
         int position = 0;
         switch (ExerciceSpinnerValue) {
@@ -160,9 +188,6 @@ public class ModifierActivity extends AppCompatActivity implements AdapterView.O
     }
 
 
-
-
-
     //*************************************************\\
     //  OnSELECTION FOR SPINNER AND IMAGEVIEW IN FORM   \\
     //*******************************************************************************************************************************************
@@ -194,4 +219,54 @@ public class ModifierActivity extends AppCompatActivity implements AdapterView.O
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
+    //*******************************************\\
+    //  BUTTON ACTION :: UPDATE--DELETE--CANCEL   \\
+    //*******************************************************************************************************************************************
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+
+            case R.id.btn_modifier:
+                updateExercice(exercice_a_modifier);
+                this.finish();
+                break;
+            case R.id.btn_supprimer:
+                deleteExercice(exercice_a_modifier);
+                this.finish();
+                break;
+            case R.id.btn_annuler:
+                this.finish();
+                break;
+
+        }
+    }
+
+    //*******************\\
+    //  UPDATE EXERCICE   \\
+    //*******************************************************************************************************************************************
+    public void updateExercice(Exercice exercice_a_modifier) {
+
+        //Modifier Exercice
+        exercice_a_modifier.setTitle(nomInput.getText().toString());
+        exercice_a_modifier.setDescription(descriptionInput.getText().toString());
+        exercice_a_modifier.setPause(spinnerPause.getSelectedItem().toString());
+        exercice_a_modifier.setSets(spinnerSets.getSelectedItem().toString());
+        exercice_a_modifier.setDuree(spinnerDuree.getSelectedItem().toString());
+        exercice_a_modifier.setRepeat(spinnerRepeat.getSelectedItem().toString());
+
+
+        Map<String, Object> hashExercice = exercice_a_modifier.toMap();
+        fireDB.modifier(key, hashExercice);
+
+    }
+
+    //*******************\\
+    //  DELETE EXERCICE   \\
+    //*******************************************************************************************************************************************
+    public void deleteExercice(Exercice exercice_a_effacer) {
+        fireDB.supprimer(key);
+    }
+
 }

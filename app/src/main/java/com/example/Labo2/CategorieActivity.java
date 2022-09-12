@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -74,7 +75,7 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
         listerExerciceSelonCategorie(categorieChoisie);
 
         //SET CLICK EVENT POUR LE BOUTON FORM
-        //findViewById(R.id.btn_form).setOnClickListener(this);
+        findViewById(R.id.btn_form).setOnClickListener(this);
     }
 
 
@@ -135,8 +136,6 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
 
                     for (DataSnapshot data : snapshot.getChildren()) {
                         Exercice exercice = data.getValue(Exercice.class);
-
-
                         assert exercice != null;
                         exercice.setKey(data.getKey());
 
@@ -148,7 +147,6 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
                     listViewExercicesCategorie = findViewById(R.id.liste_Exercices_Categorie);
                     arrayAdapter = new ListViewArrayAdapter(context, R.layout.exercices_list_layout, listeExercices);
                     listViewExercicesCategorie.setAdapter(arrayAdapter);
-
 
 
                     listViewExercicesCategorie.setOnItemClickListener((parent, view, position, id) -> {
@@ -222,6 +220,15 @@ public class CategorieActivity extends AppCompatActivity implements OnItemSelect
         spinnerPause.setAdapter(new SpinnerAdapter(this, R.layout.spinner_content_layout, getResources().getStringArray(R.array.spinnerPause)));
         spinnerRepeat.setAdapter(new SpinnerAdapter(this, R.layout.spinner_content_layout, getResources().getStringArray(R.array.spinnerRepeat)));
         spinnerDuree.setAdapter(new SpinnerAdapter(this, R.layout.spinner_content_layout, getResources().getStringArray(R.array.spinnerDuree)));
+
+
+        //REMOVE BUTTONS
+        Button btn_update = myFormView.findViewById(R.id.btn_modifier);
+        Button btn_delete = myFormView.findViewById(R.id.btn_supprimer);
+        Button btn_cancel = myFormView.findViewById(R.id.btn_annuler);
+        btn_update.setVisibility(View.GONE);
+        btn_delete.setVisibility(View.GONE);
+        btn_cancel.setVisibility(View.GONE);
 
         //FORM ACTION ====CREATE / CANCEL======_______________________________________________________________________________________________________________
         myForm.setView(myFormView)
